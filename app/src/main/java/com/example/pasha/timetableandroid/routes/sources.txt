@@ -1,0 +1,63 @@
+station and timetable
+http://www.minsktrans.by/ru/routes/prigorodnye-i-mezhdugorodnye-marshruty
+
+number bus
+http://www.minsktrans.by/ru/routes/prigorodnye-i-mezhdugorodnye-marshruty/suburb-numbers.html?
+
+
+
+        /*String url = "http://www.minsktrans.by/mg/suburbt.php?find_runs=1&minsk=501113&other=501106";
+        URL obj = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        connection.setRequestMethod("GET");
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+        //make out.html file
+        PrintWriter outFileHTML = new PrintWriter(new BufferedWriter(new FileWriter("out.html")));
+        outFileHTML.println("<html>\n" +
+                "\t<head>\n" +
+                "\t\t<title>Расписание</title>\n" +
+                "\t\t<meta http-equiv=\"Content-Type\" content=\"text/html\"; charset=\"utf-8\">\n" +
+                "\t</head>\n" +
+                "\t<body>");
+        String inputLine;
+        while ((inputLine = in.readLine()) != null) {
+            outFileHTML.println("\t\t" + inputLine);
+        }
+        outFileHTML.println("\t</body>\n" +
+                "</html>");
+        outFileHTML.close();
+        in.close();*/
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        /*String html = "http://www.minsktrans.by/mg/suburbt.php?find_runs=1&minsk=501113&other=501106";
+        try {
+            Document doc = Jsoup.connect(html).get();
+            Elements tableElements = doc.select("table[class=schedule_table]");
+
+//            Elements tableHeaderEles = tableElements.select("tr th");
+//            System.out.println("headers");
+//            for (int i = 0; i < tableHeaderEles.size(); i++) {
+//                System.out.println(tableHeaderEles.get(i).text());
+//            }
+//            System.out.println();
+
+            Elements tableRowElements = tableElements.select("tr");
+            for (int i = 0; i < tableRowElements.size(); i++) {
+                Element row = tableRowElements.get(i);
+                //System.out.println("row");
+                Elements rowItems = row.select("th");
+                if (rowItems.size() == 0)
+                    rowItems = row.select("td");
+                for (int j = 0; j < rowItems.size(); j++) {
+                    System.out.println(rowItems.get(j).text());
+                }
+                System.out.println();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/

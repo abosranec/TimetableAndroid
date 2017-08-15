@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.*;
 import com.example.pasha.timetableandroid.routes.Route;
 import com.example.pasha.timetableandroid.routes.RouteAdapter;
+import com.example.pasha.timetableandroid.routes.Stations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends Activity {
     private TextView start;
@@ -19,6 +21,7 @@ public class MainActivity extends Activity {
     //private TextView result;
     private Button findRoute;
     private ListView resultView;
+    private Stations nb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,8 @@ public class MainActivity extends Activity {
         start = findViewById(R.id.start);
         end = findViewById(R.id.end);
         findRoute = findViewById(R.id.findRoute);
+        nb = new Stations();
+        System.out.println(nb.toString());
 
         //initial ListView
         resultView = findViewById(R.id.result);
@@ -52,7 +57,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.nav_refresh:
-                Toast.makeText(getApplicationContext(),"blablabla", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"blablabla " + nb.size(), Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -62,14 +67,22 @@ public class MainActivity extends Activity {
     private List<Route> initResult(){
         List<Route> list = new ArrayList<>();
         list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","05:44", "06:02", "буд"));
-        list.add(new Route("АТОЛИНО - МИНСК АС-Дружная","279","06:03", "06:19", "буд"));
-        list.add(new Route("МАРИПОЛЬ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
-        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
-        list.add(new Route("МАРИПОЛЬ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
-        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
-        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
-        list.add(new Route("ЛЕОНЦЕВИЧИ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
-        list.add(new Route("АТОЛИНО - МИНСК АС-Дружная","279","06:03", "06:19", "вых"));
+//        list.add(new Route("АТОЛИНО - МИНСК АС-Дружная","279","06:03", "06:19", "буд"));
+//        list.add(new Route("МАРИПОЛЬ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
+//        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
+//        list.add(new Route("МАРИПОЛЬ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
+//        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
+//        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
+//        list.add(new Route("ЛЕОНЦЕВИЧИ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
+//        list.add(new Route("АТОЛИНО - МИНСК АС-Дружная","279","06:03", "06:19", "вых"));
+
+        //System.out.println(nb.toString());
+        int x = 0;
+        for (String s : nb.values()) {
+            x++;
+            list.add(new Route(s,nb.get(s),"...", "...", "..."));
+        }
+        //end.setText(x);
         return list;
     }
 
