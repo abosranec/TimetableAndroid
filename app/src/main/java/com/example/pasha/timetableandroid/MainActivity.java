@@ -2,7 +2,6 @@ package com.example.pasha.timetableandroid;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,15 +12,15 @@ import com.example.pasha.timetableandroid.routes.Stations;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class MainActivity extends Activity {
-    private TextView start;
-    private TextView end;
+    private EditText start;
+    private EditText end;
     //private TextView result;
     private Button findRoute;
     private ListView resultView;
-    private Stations nb;
+    private RouteAdapter routeAdapter;
+    private Stations stations;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +29,11 @@ public class MainActivity extends Activity {
         start = findViewById(R.id.start);
         end = findViewById(R.id.end);
         findRoute = findViewById(R.id.findRoute);
-        nb = new Stations();
-        System.out.println(nb.toString());
+        stations = new Stations();
 
         //initial ListView
         resultView = findViewById(R.id.result);
-        RouteAdapter routeAdapter = new RouteAdapter(this, initResult());
+        routeAdapter = new RouteAdapter(this);
         resultView.setAdapter(routeAdapter);
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, rezultList);
 //        result = findViewById(R.id.result);
@@ -47,7 +45,7 @@ public class MainActivity extends Activity {
 //        });
     }
 
-    //for menu
+    //**********************for menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_items, menu);
@@ -57,33 +55,27 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.nav_refresh:
-                Toast.makeText(getApplicationContext(),"blablabla " + nb.size(), Toast.LENGTH_SHORT).show();
+                stations.reWrite();
+                resultView.setAdapter(routeAdapter);
+                Toast.makeText(getApplicationContext(),"blablabla " + stations.size(), Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    //for ListView
+    //*********************for ListView
     private List<Route> initResult(){
         List<Route> list = new ArrayList<>();
         list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","05:44", "06:02", "буд"));
-//        list.add(new Route("АТОЛИНО - МИНСК АС-Дружная","279","06:03", "06:19", "буд"));
-//        list.add(new Route("МАРИПОЛЬ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
-//        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
-//        list.add(new Route("МАРИПОЛЬ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
-//        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
-//        list.add(new Route("АТОЛИНО - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "вых"));
-//        list.add(new Route("ЛЕОНЦЕВИЧИ - МИНСК АС-ЮгоЗападная","279","06:03", "06:19", "буд"));
-//        list.add(new Route("АТОЛИНО - МИНСК АС-Дружная","279","06:03", "06:19", "вых"));
 
-        //System.out.println(nb.toString());
-        int x = 0;
-        for (String s : nb.values()) {
-            x++;
-            list.add(new Route(s,nb.get(s),"...", "...", "..."));
+        for (String s : stations.keySet()) {
+            list.add(new Route(s,stations.get(s),"...", "...", "..."));
         }
-        //end.setText(x);
         return list;
     }
 
+    //*********************for find route
+    public void findRoute(View view){
+        Toast.makeText(getApplicationContext(),"blablabla ", Toast.LENGTH_SHORT).show();
+    }
 }
