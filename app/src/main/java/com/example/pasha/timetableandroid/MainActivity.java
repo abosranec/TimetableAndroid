@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
             case R.id.nav_refresh:
 //                stations.reWrite();
                 resultView.setAdapter(routeAdapter);
+                routeAdapter.reWrite();
                 //Toast.makeText(getApplicationContext(),"blablabla ", Toast.LENGTH_SHORT).show();
                 return true;
         }
@@ -64,10 +65,10 @@ public class MainActivity extends Activity {
     //*********************for find route
     public void findRoute(View view){
         //Toast.makeText(getApplicationContext(),"blablabla ", Toast.LENGTH_SHORT).show();
-        routeAdapter.reWrite(
+        routeAdapter.buildRoute(
                 start.getText().toString().toLowerCase(),
                 end.getText().toString().toLowerCase());
-        resultView.setAdapter(routeAdapter);
+        //resultView.setAdapter(routeAdapter);
     }
 
     public void showWarning(){

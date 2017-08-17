@@ -33,26 +33,22 @@ public class RouteAdapter extends BaseAdapter{
 
     public RouteAdapter(Context context, ListView resultView) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        stations = new Stations();
+        stations = new Stations(context);
         this.resultView = resultView;
-        //reWrite();
     }
 
     @Override
     public int getCount() {
         return list.size();
     }
-
     @Override
     public Object getItem(int i) {
         return list.get(i);
     }
-
     @Override
     public long getItemId(int i) {
         return i;
     }
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View viewLocal = view;
@@ -74,19 +70,18 @@ public class RouteAdapter extends BaseAdapter{
         busDays.setText(route.getDays());
         return viewLocal;
     }
-
     private Route getRoute(int position){
         return (Route)getItem(position);
     }
 
     //*********************************builds routes
-    public void reWrite(String routeStart, String routeEnd){
+    public void buildRoute(String routeStart, String routeEnd){
         this.routeStart = routeStart;
         this.routeEnd = routeEnd;
-        new ReWrite().execute();
+        new BuildRoute().execute();
     }
 
-    class ReWrite extends AsyncTask<Void, Void, Void> {
+    class BuildRoute extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -105,7 +100,7 @@ public class RouteAdapter extends BaseAdapter{
                         rowItems = row.select("td");
 
                     //made routes
-                    String days = "";
+                    String days;
                     if (rowItems.get(3).text().equals("пн вт ср чт пт"))
                         days = "буд";
                     else
@@ -140,5 +135,10 @@ public class RouteAdapter extends BaseAdapter{
                 stations.get(routeStart) +
                 "&other=" +
                 stations.get(routeEnd);
+    }
+
+    //reWrite all data
+    public void reWrite(){
+        stations.reWrite();
     }
 }

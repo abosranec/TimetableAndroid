@@ -1,6 +1,7 @@
 package com.example.pasha.timetableandroid.routes;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import org.jsoup.Jsoup;
@@ -8,13 +9,36 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.TreeMap;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Stations extends TreeMap<String, String> {
-    //private Context context;
-    public Stations() {
+
+    private Context context;
+
+    public Stations(Context context) {
         super();
-        reWrite();
+        this.context = context;
+        loadStations();
+    }
+
+    private void loadStations(){
+        TreeMap<String, String> nb = new TreeMap<>();
+        try {
+            SharedPreferences sPref = context.getSharedPreferences("stations", MODE_PRIVATE);
+            nb.putAll((Map<String,String>) sPref.getAll());
+            if (nb.size() > 0){
+                clear();
+                putAll(nb);
+            }
+            else {
+                reWrite();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void reWrite(){
@@ -39,8 +63,18 @@ public class Stations extends TreeMap<String, String> {
                 e.printStackTrace();
                 return null;
             }
-            clear();
-            putAll(nb);
+            if(nb.size() > 0){
+                clear();
+                putAll(nb);
+                SharedPreferences sPref = context.getSharedPreferences("stations", MODE_PRIVATE);
+                SharedPreferences.Editor ed = sPref.edit();
+                ed.clear();
+                //ed.commit();
+                for (String key: nb.keySet()) {
+                    ed.putString(key, nb.get(key));
+                }
+                ed.apply();
+            }
             return null;
         }
 
