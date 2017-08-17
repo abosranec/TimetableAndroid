@@ -82,9 +82,13 @@
                     <!--android:layout_height="wrap_content"-->
                     <!--android:id="@+id/result"/>-->
     <!--</ScrollView>-->
+    <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/probn"/>
     <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:id="@+id/result"/>
     <!--<Button-->
             <!--android:text="@string/saveRoute"-->

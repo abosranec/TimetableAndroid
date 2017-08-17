@@ -18,6 +18,12 @@ public class MainActivity extends Activity {
     private Button findRoute;
     private ListView resultView;
     private RouteAdapter routeAdapter;
+
+
+    String[] textProb = {"asdfg","asdfghj","sdf","yrytu","m,bjhk","ljjih"};
+    AutoCompleteTextView autoCompleteTextView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,15 @@ public class MainActivity extends Activity {
 //                result.setText(result.getText().toString() + "\n" + start.getText() + "\t\t" + end.getText());
 //            }
 //        });
+
+
+
+        autoCompleteTextView = findViewById(R.id.probn);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.select_dialog_item,textProb);
+        autoCompleteTextView.setThreshold(3);
+        autoCompleteTextView.setAdapter(arrayAdapter);
+
+
     }
 
     //**********************for menu
