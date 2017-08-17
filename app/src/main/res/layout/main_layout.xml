@@ -12,23 +12,57 @@
             android:textSize="24sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textStyle="normal|bold"
-            android:textAlignment="center"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="@string/start"
-            android:ems="20"
             android:textAlignment="center"
-            android:id="@+id/start"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="@string/end"
-            android:ems="20"
-            android:textAlignment="center"
-            android:id="@+id/end"/>
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:weightSum="1"
+                  android:orientation="horizontal">
+        <TextView
+                android:text="@string/textStart"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:id="@+id/textStart"
+                android:textSize="18sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                android:textStyle="normal|bold"
+                android:textAlignment="center"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text=""
+                android:ems="20"
+                android:textAlignment="center"
+                android:id="@+id/start"/>
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:weightSum="1"
+                  android:orientation="horizontal">
+        <TextView
+                android:text="@string/textEnd"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:id="@+id/textEnd"
+                android:textSize="18sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                android:textStyle="normal|bold"
+                android:textAlignment="center"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text=""
+                android:ems="20"
+                android:textAlignment="center"
+                android:id="@+id/end"/>
+    </LinearLayout>
     <Button
             android:text="@string/find"
             android:layout_width="match_parent"
@@ -50,11 +84,11 @@
     <!--</ScrollView>-->
     <ListView
             android:layout_width="match_parent"
-            android:layout_height="292dp"
+            android:layout_height="wrap_content"
             android:id="@+id/result"/>
-    <Button
-            android:text="@string/saveRoute"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:id="@+id/saveRoute"/>
+    <!--<Button-->
+            <!--android:text="@string/saveRoute"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="68dp"-->
+            <!--android:id="@+id/saveRoute"/>-->
 </LinearLayout>

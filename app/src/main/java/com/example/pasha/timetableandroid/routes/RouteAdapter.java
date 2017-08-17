@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.pasha.timetableandroid.MainActivity;
@@ -28,12 +29,12 @@ public class RouteAdapter extends BaseAdapter{
     private String routeStart = "";
     private String routeEnd = "";
     private LayoutInflater inflater;
-    private Context context;
+    private ListView resultView;
 
-    public RouteAdapter(Context context) {
+    public RouteAdapter(Context context, ListView resultView) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.context = context;
         stations = new Stations();
+        this.resultView = resultView;
         //reWrite();
     }
 
@@ -129,6 +130,7 @@ public class RouteAdapter extends BaseAdapter{
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            resultView.setAdapter(RouteAdapter.this);
         }
     }
 

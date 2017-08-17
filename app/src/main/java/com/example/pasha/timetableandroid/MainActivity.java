@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 
         //initial ListView
         resultView = findViewById(R.id.result);
-        routeAdapter = new RouteAdapter(this);
+        routeAdapter = new RouteAdapter(this, resultView);
         resultView.setAdapter(routeAdapter);
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, rezultList);
 //        result = findViewById(R.id.result);
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
             case R.id.nav_refresh:
 //                stations.reWrite();
                 resultView.setAdapter(routeAdapter);
-                Toast.makeText(getApplicationContext(),"blablabla ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"blablabla ", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

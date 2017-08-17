@@ -3,7 +3,7 @@
     <string name="btn_text">Привет</string>
     <string name="btn2_text">click</string>
     <string name="title">Расписание</string>
-    <string name="route">Выбор маршрута:</string>
+    <string name="route">Выбор маршрута</string>
     <string name="start">Начало</string>
     <string name="end">Конец</string>
     <string name="find">Найти маршрут</string>
@@ -12,4 +12,6 @@
     <string name="activityNew">Новый маршрут</string>
     <string name="activityRefresh">Обновить базы</string>
     <string name="activityAbout">О приложении</string>
+    <string name="textStart">Откуда:</string>
+    <string name="textEnd">Куда:</string>
 </resources>
