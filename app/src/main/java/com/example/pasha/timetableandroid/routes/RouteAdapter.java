@@ -1,5 +1,6 @@
 package com.example.pasha.timetableandroid.routes;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.example.pasha.timetableandroid.MainActivity;
 import com.example.pasha.timetableandroid.R;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,11 +24,17 @@ import java.util.TreeMap;
 public class RouteAdapter extends BaseAdapter{
 
     private List<Route> list = new ArrayList<>();
+    private Stations stations;
+    private String routeStart = "";
+    private String routeEnd = "";
     private LayoutInflater inflater;
+    private Context context;
 
     public RouteAdapter(Context context) {
-        reWrite();
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.context = context;
+        stations = new Stations();
+        //reWrite();
     }
 
     @Override
@@ -69,18 +78,21 @@ public class RouteAdapter extends BaseAdapter{
         return (Route)getItem(position);
     }
 
-    //*********************************rewrite routes
-    public void reWrite(){
+    //*********************************builds routes
+    public void reWrite(String routeStart, String routeEnd){
+        this.routeStart = routeStart;
+        this.routeEnd = routeEnd;
         new ReWrite().execute();
     }
+
     class ReWrite extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
-//            TreeMap<String, String> nb = new TreeMap<>();
-//            String html = "http://www.minsktrans.by/mg/suburb.php";
             List<Route> listRoute = new ArrayList<>();
-            String html = "http://www.minsktrans.by/mg/suburbt.php?find_runs=1&minsk=501113&other=501106";
+            String html = getHtmlForRoute();
+
+            //Toast.makeText(context.getApplicationContext(),"Ошибка доступа в интернет!", Toast.LENGTH_SHORT).show();
             try {
                 Document doc = Jsoup.connect(html).get();
                 Elements tableElements = doc.select("table[class=schedule_table]");
@@ -118,5 +130,13 @@ public class RouteAdapter extends BaseAdapter{
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
         }
+    }
+
+    //make get-request route start - end
+    private String getHtmlForRoute(){
+        return "http://www.minsktrans.by/mg/suburbt.php?find_runs=1&minsk=" +
+                stations.get(routeStart) +
+                "&other=" +
+                stations.get(routeEnd);
     }
 }

@@ -31,9 +31,9 @@ public class Stations extends TreeMap<String, String> {
                 Document doc = Jsoup.connect(html).get();
                 Elements tableElements = doc.select("select[id=minsk0] option");
                 for (int i = 0; i < tableElements.size() - 2; i++) {
-                    nb.put(tableElements.get(i).text(), tableElements.get(i).attr("value"));
+                    nb.put(tableElements.get(i).text().toLowerCase(), tableElements.get(i).attr("value"));
                 }
-                nb.put(tableElements.get(tableElements.size() - 1).text(),
+                nb.put(tableElements.get(tableElements.size() - 1).text().toLowerCase(),
                         tableElements.get(tableElements.size() - 1).attr("value"));
             } catch (IOException e) {
                 e.printStackTrace();
