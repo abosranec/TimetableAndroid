@@ -12,16 +12,18 @@ import com.example.pasha.timetableandroid.routes.Stations;
 
 
 public class MainActivity extends Activity {
-    private EditText start;
-    private EditText end;
+    private AutoCompleteTextView start;
+    private AutoCompleteTextView end;
     //private TextView result;
     private Button findRoute;
     private ListView resultView;
     private RouteAdapter routeAdapter;
+    private ArrayAdapter arrayAdapterStart;
+    private ArrayAdapter arrayAdapterEnd;
 
 
-    String[] textProb = {"asdfg","asdfghj","sdf","yrytu","m,bjhk","ljjih"};
-    AutoCompleteTextView autoCompleteTextView;
+    private String[] textProb = {"asdfg","asdfghj","sdf","yrytu","m,bjhk","ljjih"};
+//    private AutoCompleteTextView autoCompleteTextView;
 
 
     @Override
@@ -29,13 +31,37 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         //initial button on activity
+            //start
         start = findViewById(R.id.start);
+        ImageView imageStart = findViewById(R.id.imageStart);
+        arrayAdapterStart = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line);
+        //arrayAdapterStart.addAll(textProb);
+        start.setAdapter(arrayAdapterStart);
+        start.setThreshold(2);
+        imageStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start.showDropDown();
+            }
+        });
+            //stop
         end = findViewById(R.id.end);
+        ImageView imageEnd = findViewById(R.id.imageEnd);
+        arrayAdapterEnd = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line);
+        end.setAdapter(arrayAdapterEnd);
+        end.setThreshold(2);
+        imageEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                end.showDropDown();
+            }
+        });
+            //button find
         findRoute = findViewById(R.id.findRoute);
 
-        //initial ListView
+            //initial ListView
         resultView = findViewById(R.id.result);
-        routeAdapter = new RouteAdapter(this, resultView);
+        routeAdapter = new RouteAdapter(this, resultView, start, arrayAdapterStart, end, arrayAdapterEnd);
         resultView.setAdapter(routeAdapter);
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, rezultList);
 //        result = findViewById(R.id.result);
@@ -45,13 +71,17 @@ public class MainActivity extends Activity {
 //                result.setText(result.getText().toString() + "\n" + start.getText() + "\t\t" + end.getText());
 //            }
 //        });
-
-
-
-        autoCompleteTextView = findViewById(R.id.probn);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.select_dialog_item,textProb);
-        autoCompleteTextView.setThreshold(3);
-        autoCompleteTextView.setAdapter(arrayAdapter);
+//        autoCompleteTextView = findViewById(R.id.probn);
+//        ImageView imageView = findViewById(R.id.startImage);
+//        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line,textProb);
+//        autoCompleteTextView.setThreshold(2);
+//        autoCompleteTextView.setAdapter(arrayAdapter);
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                autoCompleteTextView.showDropDown();
+//            }
+//        });
 
 
     }

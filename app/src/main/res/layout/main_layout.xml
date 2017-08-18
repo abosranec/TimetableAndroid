@@ -18,11 +18,11 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:weightSum="1"
+                  android:columnCount="3"
                   android:orientation="horizontal">
         <TextView
                 android:text="@string/textStart"
-                android:layout_width="80dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
                 android:id="@+id/textStart"
@@ -30,14 +30,23 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                 android:textStyle="normal|bold"
                 android:textAlignment="center"/>
-        <EditText
-                android:layout_width="wrap_content"
+        <AutoCompleteTextView
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text=""
+                android:hint=""
                 android:ems="20"
                 android:textAlignment="center"
-                android:id="@+id/start"/>
+                android:id="@+id/start" android:textColor="@android:color/black"
+                android:textColorHighlight="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textColorLink="@android:color/black"/>
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageStart"
+                android:padding="5dp"
+                android:src = "@mipmap/ic_arrow_drop_down_black_24dp"/>
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
@@ -46,7 +55,7 @@
                   android:orientation="horizontal">
         <TextView
                 android:text="@string/textEnd"
-                android:layout_width="80dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
                 android:id="@+id/textEnd"
@@ -54,14 +63,20 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                 android:textStyle="normal|bold"
                 android:textAlignment="center"/>
-        <EditText
-                android:layout_width="wrap_content"
+        <AutoCompleteTextView
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text=""
+                android:hint=""
                 android:ems="20"
                 android:textAlignment="center"
                 android:id="@+id/end"/>
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageEnd"
+                android:padding="5dp"
+                android:src = "@mipmap/ic_arrow_drop_down_black_24dp"/>
     </LinearLayout>
     <Button
             android:text="@string/find"
@@ -70,29 +85,42 @@
             android:id="@+id/findRoute"
             android:onClick="findRoute"/>
     <!--<ScrollView-->
-            <!--android:id="@+id/SCROLLER_ID"-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:scrollbars="horizontal|vertical"-->
-            <!--android:fillViewport="true"-->
-            <!--android:layout_weight="1">-->
-            <!--<TextView-->
-                    <!--android:text=""-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:id="@+id/result"/>-->
+    <!--android:id="@+id/SCROLLER_ID"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:scrollbars="horizontal|vertical"-->
+    <!--android:fillViewport="true"-->
+    <!--android:layout_weight="1">-->
+    <!--<TextView-->
+    <!--android:text=""-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/result"/>-->
     <!--</ScrollView>-->
-    <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:id="@+id/probn"/>
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                  <!--android:layout_width="match_parent"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:weightSum="1"-->
+                  <!--android:orientation="horizontal">-->
+        <!--<AutoCompleteTextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:id="@+id/probn"-->
+                <!--android:hint="@string/textStart"/>-->
+        <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/startImage"-->
+                <!--android:padding="5dp"-->
+                <!--android:src = "@mipmap/ic_arrow_drop_down_black_24dp"/>-->
+    <!--</LinearLayout>-->
     <ListView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:id="@+id/result"/>
     <!--<Button-->
-            <!--android:text="@string/saveRoute"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="68dp"-->
-            <!--android:id="@+id/saveRoute"/>-->
+    <!--android:text="@string/saveRoute"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="68dp"-->
+    <!--android:id="@+id/saveRoute"/>-->
 </LinearLayout>

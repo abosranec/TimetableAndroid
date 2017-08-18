@@ -12,6 +12,6 @@
     <string name="activityNew">Новый маршрут</string>
     <string name="activityRefresh">Обновить базы</string>
     <string name="activityAbout">О приложении</string>
-    <string name="textStart">Откуда:</string>
-    <string name="textEnd">Куда:</string>
+    <string name="textStart">Из:</string>
+    <string name="textEnd">В:</string>
 </resources>

@@ -6,10 +6,7 @@ import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.example.pasha.timetableandroid.MainActivity;
 import com.example.pasha.timetableandroid.R;
 import org.jsoup.Jsoup;
@@ -30,10 +27,16 @@ public class RouteAdapter extends BaseAdapter{
     private String routeEnd = "";
     private LayoutInflater inflater;
     private ListView resultView;
+//    private AutoCompleteTextView start;
 
-    public RouteAdapter(Context context, ListView resultView) {
+    public RouteAdapter(Context context,
+                        ListView resultView,
+                        AutoCompleteTextView start,
+                        ArrayAdapter arrayAdapterStart,
+                        AutoCompleteTextView end,
+                        ArrayAdapter arrayAdapterEnd) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        stations = new Stations(context);
+        stations = new Stations(context, start, arrayAdapterStart, end, arrayAdapterEnd);
         this.resultView = resultView;
     }
 

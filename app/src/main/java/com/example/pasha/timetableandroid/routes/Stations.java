@@ -3,6 +3,8 @@ package com.example.pasha.timetableandroid.routes;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,10 +19,22 @@ import static android.content.Context.MODE_PRIVATE;
 public class Stations extends TreeMap<String, String> {
 
     private Context context;
+    private AutoCompleteTextView start;
+    private ArrayAdapter arrayAdapterStart;
+    private AutoCompleteTextView end;
+    private ArrayAdapter arrayAdapterEnd;
 
-    public Stations(Context context) {
+    public Stations(Context context,
+                    AutoCompleteTextView start,
+                    ArrayAdapter arrayAdapterStart,
+                    AutoCompleteTextView end,
+                    ArrayAdapter arrayAdapterEnd) {
         super();
         this.context = context;
+        this.start = start;
+        this.arrayAdapterStart = arrayAdapterStart;
+        this.end = end;
+        this.arrayAdapterEnd = arrayAdapterEnd;
         loadStations();
     }
 
@@ -32,6 +46,12 @@ public class Stations extends TreeMap<String, String> {
             if (nb.size() > 0){
                 clear();
                 putAll(nb);
+                arrayAdapterStart.clear();
+                arrayAdapterStart.addAll(nb.keySet().toArray());
+                start.setAdapter(arrayAdapterStart);
+                arrayAdapterEnd.clear();
+                arrayAdapterEnd.addAll(nb.keySet().toArray());
+                end.setAdapter(arrayAdapterEnd);
             }
             else {
                 reWrite();
@@ -64,8 +84,17 @@ public class Stations extends TreeMap<String, String> {
                 return null;
             }
             if(nb.size() > 0){
+                //write in application
                 clear();
                 putAll(nb);
+                //write for choice stations
+                arrayAdapterStart.clear();
+                arrayAdapterStart.addAll(nb.keySet().toArray());
+                start.setAdapter(arrayAdapterStart);
+                arrayAdapterEnd.clear();
+                arrayAdapterEnd.addAll(nb.keySet().toArray());
+                end.setAdapter(arrayAdapterEnd);
+                //write in memory
                 SharedPreferences sPref = context.getSharedPreferences("stations", MODE_PRIVATE);
                 SharedPreferences.Editor ed = sPref.edit();
                 ed.clear();
