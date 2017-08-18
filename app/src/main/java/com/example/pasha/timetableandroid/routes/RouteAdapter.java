@@ -2,6 +2,7 @@ package com.example.pasha.timetableandroid.routes;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -28,12 +30,16 @@ public class RouteAdapter extends BaseAdapter{
     private String routeEnd = "";
     private LayoutInflater inflater;
     private ListView resultView;
+    private ToggleButton ButtonWeekdays;
+    private ToggleButton ButtonHoliday;
 //    private AutoCompleteTextView start;
 
     public RouteAdapter(MainActivity context) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         stations = new Stations(context);
         this.resultView = context.getResultView();
+        this.ButtonWeekdays = context.getButtonWeekdays();
+        this.ButtonHoliday = context.getButtonHoliday();
     }
 
     @Override
@@ -116,8 +122,9 @@ public class RouteAdapter extends BaseAdapter{
                 e.printStackTrace();
                 return null;
             }
-            list.clear();
-            list.addAll(listRoute);
+            listAll.clear();
+            listAll.addAll(listRoute);
+            choiceDays();
             return null;
         }
 
@@ -139,5 +146,43 @@ public class RouteAdapter extends BaseAdapter{
     //reWrite all data
     public void reWrite(){
         stations.reWrite();
+    }
+
+    //rebuild list with days of week
+    private void choiceDays(){
+        Calendar c = Calendar.getInstance();
+        list.clear();
+        if(c.get(Calendar.DAY_OF_WEEK) == 1 || c.get(Calendar.DAY_OF_WEEK) == 7 ){
+            for (Route route: listAll) {
+                if (route.getDays().equals("вых")){
+                    list.add(route);
+                }
+            }
+        }
+        else{
+            for (Route route: listAll) {
+                if (route.getDays().equals("буд")){
+                    list.add(route);
+                }
+            }
+        }
+    }
+    public void setHolidays(){
+        list.clear();
+        for (Route route: listAll) {
+            if (route.getDays().equals("вых")){
+                    list.add(route);
+            }
+        }
+        resultView.setAdapter(this);
+    }
+    public void setWeekdays(){
+        list.clear();
+        for (Route route: listAll) {
+            if (route.getDays().equals("буд")){
+                list.add(route);
+            }
+        }
+        resultView.setAdapter(this);
     }
 }
