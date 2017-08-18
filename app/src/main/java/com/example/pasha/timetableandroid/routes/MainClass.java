@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.TreeMap;
 
 import org.jsoup.Jsoup;
@@ -59,6 +61,9 @@ public class MainClass {
 //            e.printStackTrace();
 //        }
         ////////////////////////////////////////
+        Calendar c = Calendar.getInstance();
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        System.out.println(dayOfWeek);
 
     }
 }

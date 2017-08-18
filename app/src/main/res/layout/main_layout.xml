@@ -18,7 +18,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:columnCount="3"
+                  android:weightSum="1"
                   android:orientation="horizontal">
         <TextView
                 android:text="@string/textStart"
@@ -37,10 +37,7 @@
                 android:hint=""
                 android:ems="20"
                 android:textAlignment="center"
-                android:id="@+id/start" android:textColor="@android:color/black"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="@android:color/black"
-                android:textColorLink="@android:color/black"/>
+                android:id="@+id/start"/>
         <ImageView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
@@ -84,43 +81,32 @@
             android:layout_height="wrap_content"
             android:id="@+id/findRoute"
             android:onClick="findRoute"/>
-    <!--<ScrollView-->
-    <!--android:id="@+id/SCROLLER_ID"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:scrollbars="horizontal|vertical"-->
-    <!--android:fillViewport="true"-->
-    <!--android:layout_weight="1">-->
-    <!--<TextView-->
-    <!--android:text=""-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/result"/>-->
-    <!--</ScrollView>-->
-    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-                  <!--android:layout_width="match_parent"-->
-                  <!--android:layout_height="wrap_content"-->
-                  <!--android:weightSum="1"-->
-                  <!--android:orientation="horizontal">-->
-        <!--<AutoCompleteTextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:id="@+id/probn"-->
-                <!--android:hint="@string/textStart"/>-->
-        <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/startImage"-->
-                <!--android:padding="5dp"-->
-                <!--android:src = "@mipmap/ic_arrow_drop_down_black_24dp"/>-->
-    <!--</LinearLayout>-->
     <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="280dp"
             android:id="@+id/result"/>
-    <!--<Button-->
-    <!--android:text="@string/saveRoute"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="68dp"-->
-    <!--android:id="@+id/saveRoute"/>-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:weightSum="1"
+                  android:orientation="horizontal">
+        <ToggleButton
+                android:text="ToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toggleWeekdays"
+                android:layout_weight="0.5"
+                android:textOn="@string/switchWeekdays"
+                android:textOff="@string/switchWeekdays"
+                android:textSize="22sp"/>
+        <ToggleButton
+                android:text="ToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toggleHolidays"
+                android:layout_weight="0.5"
+                android:textOn="@string/switchHolidays"
+                android:textOff="@string/switchHolidays"
+                android:textSize="22sp"/>
+    </LinearLayout>
 </LinearLayout>

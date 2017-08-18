@@ -1,6 +1,8 @@
 package com.example.pasha.timetableandroid;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,16 +16,13 @@ import com.example.pasha.timetableandroid.routes.Stations;
 public class MainActivity extends Activity {
     private AutoCompleteTextView start;
     private AutoCompleteTextView end;
-    //private TextView result;
     private Button findRoute;
     private ListView resultView;
     private RouteAdapter routeAdapter;
     private ArrayAdapter arrayAdapterStart;
     private ArrayAdapter arrayAdapterEnd;
-
-
-    private String[] textProb = {"asdfg","asdfghj","sdf","yrytu","m,bjhk","ljjih"};
-//    private AutoCompleteTextView autoCompleteTextView;
+    private ToggleButton ButtonWeekdays;
+    private ToggleButton ButtonHoliday;
 
 
     @Override
@@ -61,8 +60,12 @@ public class MainActivity extends Activity {
 
             //initial ListView
         resultView = findViewById(R.id.result);
-        routeAdapter = new RouteAdapter(this, resultView, start, arrayAdapterStart, end, arrayAdapterEnd);
+        routeAdapter = new RouteAdapter(this);
         resultView.setAdapter(routeAdapter);
+
+            //switch days
+        initSwitcher();
+
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, rezultList);
 //        result = findViewById(R.id.result);
 //        findRoute.setOnClickListener(new View.OnClickListener() {
@@ -71,19 +74,28 @@ public class MainActivity extends Activity {
 //                result.setText(result.getText().toString() + "\n" + start.getText() + "\t\t" + end.getText());
 //            }
 //        });
-//        autoCompleteTextView = findViewById(R.id.probn);
-//        ImageView imageView = findViewById(R.id.startImage);
-//        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line,textProb);
-//        autoCompleteTextView.setThreshold(2);
-//        autoCompleteTextView.setAdapter(arrayAdapter);
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                autoCompleteTextView.showDropDown();
-//            }
-//        });
+    }
 
-
+    public AutoCompleteTextView getStart() {
+        return start;
+    }
+    public AutoCompleteTextView getEnd() {
+        return end;
+    }
+    public ListView getResultView() {
+        return resultView;
+    }
+    public ArrayAdapter getArrayAdapterStart() {
+        return arrayAdapterStart;
+    }
+    public ArrayAdapter getArrayAdapterEnd() {
+        return arrayAdapterEnd;
+    }
+    public ToggleButton getButtonWeekdays() {
+        return ButtonWeekdays;
+    }
+    public ToggleButton getButtonHoliday() {
+        return ButtonHoliday;
     }
 
     //**********************for menu
@@ -118,5 +130,33 @@ public class MainActivity extends Activity {
 
     public void showWarning(){
         Toast.makeText(getApplicationContext(),"Нет соединения с интернетом!", Toast.LENGTH_SHORT).show();
+    }
+
+    //switch days
+    private void initSwitcher(){
+        ButtonWeekdays = findViewById(R.id.toggleWeekdays);
+        ButtonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
+        ButtonHoliday = findViewById(R.id.toggleHolidays);
+        ButtonHoliday.setBackgroundColor(Color.rgb(200,200,200));
+        ButtonWeekdays.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    compoundButton.setBackgroundColor(Color.argb(120,0,0, 255));
+                    ButtonHoliday.setChecked(false);
+                    ButtonHoliday.setBackgroundColor(Color.rgb(200,200,200));
+                }
+            }
+        });
+        ButtonHoliday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    compoundButton.setBackgroundColor(Color.argb(120,0,0, 255));
+                    ButtonWeekdays.setChecked(false);
+                    ButtonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
+                }
+            }
+        });
     }
 }

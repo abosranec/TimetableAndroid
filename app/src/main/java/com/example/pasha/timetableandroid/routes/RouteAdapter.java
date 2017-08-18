@@ -22,6 +22,7 @@ import java.util.TreeMap;
 public class RouteAdapter extends BaseAdapter{
 
     private List<Route> list = new ArrayList<>();
+    private List<Route> listAll = new ArrayList<>();
     private Stations stations;
     private String routeStart = "";
     private String routeEnd = "";
@@ -29,15 +30,10 @@ public class RouteAdapter extends BaseAdapter{
     private ListView resultView;
 //    private AutoCompleteTextView start;
 
-    public RouteAdapter(Context context,
-                        ListView resultView,
-                        AutoCompleteTextView start,
-                        ArrayAdapter arrayAdapterStart,
-                        AutoCompleteTextView end,
-                        ArrayAdapter arrayAdapterEnd) {
+    public RouteAdapter(MainActivity context) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        stations = new Stations(context, start, arrayAdapterStart, end, arrayAdapterEnd);
-        this.resultView = resultView;
+        stations = new Stations(context);
+        this.resultView = context.getResultView();
     }
 
     @Override

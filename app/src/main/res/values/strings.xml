@@ -14,4 +14,6 @@
     <string name="activityAbout">О приложении</string>
     <string name="textStart">Из:</string>
     <string name="textEnd">В:</string>
+    <string name="switchWeekdays">пн - пт</string>
+    <string name="switchHolidays">сб - вс</string>
 </resources>

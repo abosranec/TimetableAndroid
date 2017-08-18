@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
+import com.example.pasha.timetableandroid.MainActivity;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -18,23 +19,19 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Stations extends TreeMap<String, String> {
 
-    private Context context;
+    private MainActivity context;
     private AutoCompleteTextView start;
     private ArrayAdapter arrayAdapterStart;
     private AutoCompleteTextView end;
     private ArrayAdapter arrayAdapterEnd;
 
-    public Stations(Context context,
-                    AutoCompleteTextView start,
-                    ArrayAdapter arrayAdapterStart,
-                    AutoCompleteTextView end,
-                    ArrayAdapter arrayAdapterEnd) {
+    public Stations(MainActivity context) {
         super();
         this.context = context;
-        this.start = start;
-        this.arrayAdapterStart = arrayAdapterStart;
-        this.end = end;
-        this.arrayAdapterEnd = arrayAdapterEnd;
+        this.start = context.getStart();
+        this.arrayAdapterStart = context.getArrayAdapterStart();
+        this.end = context.getEnd();
+        this.arrayAdapterEnd = context.getArrayAdapterEnd();
         loadStations();
     }
 
