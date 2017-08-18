@@ -129,14 +129,18 @@ public class MainActivity extends Activity {
         Calendar c = Calendar.getInstance();
         if(c.get(Calendar.DAY_OF_WEEK) == 1 || c.get(Calendar.DAY_OF_WEEK) == 7 ){
             ButtonHoliday.setChecked(true);
+            ButtonHoliday.setTextColor(Color.rgb(255,255, 255));
             ButtonHoliday.setBackgroundColor(Color.argb(120,0,0, 255));
             ButtonWeekdays.setChecked(false);
+            ButtonWeekdays.setTextColor(Color.rgb(0,0, 0));
             ButtonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
         }
         else{
             ButtonHoliday.setChecked(false);
+            ButtonHoliday.setTextColor(Color.rgb(0,0, 0));
             ButtonHoliday.setBackgroundColor(Color.rgb(200,200,200));
             ButtonWeekdays.setChecked(true);
+            ButtonWeekdays.setTextColor(Color.rgb(255,255, 255));
             ButtonWeekdays.setBackgroundColor(Color.argb(120,0,0, 255));
         }
     }
@@ -152,8 +156,10 @@ public class MainActivity extends Activity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
                     compoundButton.setBackgroundColor(Color.argb(120,0,0, 255));
+                    compoundButton.setTextColor(Color.rgb(255,255, 255));
                     routeAdapter.setWeekdays();
                     ButtonHoliday.setChecked(false);
+                    ButtonHoliday.setTextColor(Color.rgb(0,0, 0));
                     ButtonHoliday.setBackgroundColor(Color.rgb(200,200,200));
                 }
             }
@@ -163,8 +169,10 @@ public class MainActivity extends Activity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
                     compoundButton.setBackgroundColor(Color.argb(120,0,0, 255));
+                    compoundButton.setTextColor(Color.rgb(255,255, 255));
                     routeAdapter.setHolidays();
                     ButtonWeekdays.setChecked(false);
+                    ButtonWeekdays.setTextColor(Color.rgb(0,0, 0));
                     ButtonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
                 }
             }
