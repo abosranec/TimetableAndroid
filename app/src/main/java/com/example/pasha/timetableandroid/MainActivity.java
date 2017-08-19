@@ -45,6 +45,13 @@ public class MainActivity extends Activity {
                 start.showDropDown();
             }
         });
+        ImageView imageDeleteStart = findViewById(R.id.imageDeleteStart);
+        imageDeleteStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start.setText("");
+            }
+        });
             //stop
         end = findViewById(R.id.end);
         ImageView imageEnd = findViewById(R.id.imageEnd);
@@ -55,6 +62,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 end.showDropDown();
+            }
+        });
+        ImageView imageDeleteEnd = findViewById(R.id.imageDeleteEnd);
+        imageDeleteEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                end.setText("");
             }
         });
             //button find

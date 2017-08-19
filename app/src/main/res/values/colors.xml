@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="start">#8373ff00</color>
     <color name="end">#83005eff</color>
+    <color name="middle">#83dcdcdc</color>
+    <color name="white">#ffffff</color>
 </resources>

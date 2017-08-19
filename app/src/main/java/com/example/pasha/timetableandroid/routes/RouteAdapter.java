@@ -67,12 +67,24 @@ public class RouteAdapter extends BaseAdapter{
         TextView busNumber = viewLocal.findViewById(R.id.bus_number);
         TextView busStart = viewLocal.findViewById(R.id.bus_start);
         TextView busEnd = viewLocal.findViewById(R.id.bus_end);
-        TextView busDays = viewLocal.findViewById(R.id.bus_days);
+        //TextView busDays = viewLocal.findViewById(R.id.bus_days);
         busRoute.setText(route.getBusRoute());
         busNumber.setText(route.getBusNumber());
         busStart.setText(route.getStart());
         busEnd.setText(route.getEnd());
-        busDays.setText(route.getDays());
+        //busDays.setText(route.getDays());
+
+        if (i % 2 == 0) {
+            busRoute.setBackgroundColor(Color.argb(130, 220, 220, 220));
+            busNumber.setBackgroundColor(Color.argb(130, 220, 220, 220));
+            busStart.setBackgroundColor(Color.argb(130, 220, 220, 220));
+            busEnd.setBackgroundColor(Color.argb(130, 220, 220, 220));
+        } else{
+            busRoute.setBackgroundColor(Color.argb(0, 255, 255, 255));
+            busNumber.setBackgroundColor(Color.argb(0, 255, 255, 255));
+            busStart.setBackgroundColor(Color.argb(0, 255, 255, 255));
+            busEnd.setBackgroundColor(Color.argb(0, 255, 255, 255));
+        }
         return viewLocal;
     }
     private Route getRoute(int position){
@@ -117,9 +129,10 @@ public class RouteAdapter extends BaseAdapter{
                             rowItems.get(2).text(),
                             days));
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
+                list.clear();
+                list.add(new Route("","интернет!","Ошибка","доступа в",""));
                 return null;
             }
             listAll.clear();

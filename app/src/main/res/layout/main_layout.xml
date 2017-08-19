@@ -44,6 +44,13 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/imageDeleteStart"
+                android:paddingTop="5dp"
+                android:src = "@mipmap/ic_clear_black_24dp"
+                android:layout_weight="0"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/imageStart"
                 android:padding="5dp"
                 android:src = "@mipmap/ic_arrow_drop_down_black_24dp"
@@ -78,6 +85,13 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/imageDeleteEnd"
+                android:paddingTop="5dp"
+                android:src = "@mipmap/ic_clear_black_24dp"
+                android:layout_weight="0"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/imageEnd"
                 android:padding="5dp"
                 android:src = "@mipmap/ic_arrow_drop_down_black_24dp"
@@ -90,32 +104,83 @@
             android:id="@+id/findRoute"
             android:onClick="findRoute"
             android:layout_weight="0"
-            android:textSize="22sp"/>
+            android:textSize="20sp"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3">
+        <TextView
+                android:text="Из"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/headStart"
+                android:layout_weight="0.333"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                android:textSize="18sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"/>
+        <TextView
+                android:text="В"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/headEnd"
+                android:layout_weight="0.333"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                android:textSize="18sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"/>
+        <TextView
+                android:text="№ авт"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/headNumber"
+                android:layout_weight="0.333"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                android:textSize="18sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"/>
+    </LinearLayout>
+
     <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/result"
             android:layout_weight="1"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/colorPrimaryDark"/>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_weight="0"
                   android:orientation="horizontal">
         <ToggleButton
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/toggleWeekdays"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:textOn="@string/switchWeekdays"
                 android:textOff="@string/switchWeekdays"
-                android:textSize="22sp"/>
+                android:textSize="18sp"/>
         <ToggleButton
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/toggleHolidays"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:textOn="@string/switchHolidays"
                 android:textOff="@string/switchHolidays"
-                android:textSize="22sp"/>
+                android:textSize="18sp"/>
     </LinearLayout>
 </LinearLayout>
