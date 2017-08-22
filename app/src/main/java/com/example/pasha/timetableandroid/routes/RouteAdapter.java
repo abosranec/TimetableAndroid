@@ -32,7 +32,7 @@ public class RouteAdapter extends BaseAdapter{
     private ListView resultView;
     private ToggleButton ButtonWeekdays;
     private ToggleButton ButtonHoliday;
-//    private AutoCompleteTextView start;
+    private TextView textCurrentRoute;
 
     public RouteAdapter(MainActivity context) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -40,6 +40,7 @@ public class RouteAdapter extends BaseAdapter{
         this.resultView = context.getResultView();
         this.ButtonWeekdays = context.getButtonWeekdays();
         this.ButtonHoliday = context.getButtonHoliday();
+        this.textCurrentRoute = context.getTextCurrentRoute();
     }
 
     @Override
@@ -100,6 +101,7 @@ public class RouteAdapter extends BaseAdapter{
 
     class BuildRoute extends AsyncTask<Void, Void, Void> {
 
+        private boolean resultBuild;
         @Override
         protected Void doInBackground(Void... params) {
             List<Route> listRoute = new ArrayList<>();
@@ -132,11 +134,12 @@ public class RouteAdapter extends BaseAdapter{
             } catch (IOException e) {
                 e.printStackTrace();
                 list.clear();
-                list.add(new Route("","интернет!","Ошибка","доступа в",""));
+                resultBuild = false;
                 return null;
             }
             listAll.clear();
             listAll.addAll(listRoute);
+            resultBuild = true;
             choiceDays();
             return null;
         }
@@ -145,6 +148,25 @@ public class RouteAdapter extends BaseAdapter{
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             resultView.setAdapter(RouteAdapter.this);
+            buildCurrentRoute();
+        }
+
+        //build current route
+        private void buildCurrentRoute(){
+            if (resultBuild) {
+                if (listAll.size() > 0) {
+                    textCurrentRoute.setText(routeStart + " - " + routeEnd);
+                    textCurrentRoute.setBackgroundColor(Color.rgb(48,63,159));
+                }
+                else{
+                    textCurrentRoute.setText("Выбранный маршрут не существует!");
+                    textCurrentRoute.setBackgroundColor(Color.rgb(0,180,0));
+                }
+            }
+            else {
+                textCurrentRoute.setText("Ошибка доступа в интернет!");
+                textCurrentRoute.setBackgroundColor(Color.rgb(255,0,0));
+            }
         }
     }
 

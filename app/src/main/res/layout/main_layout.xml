@@ -14,7 +14,8 @@
             android:textAlignment="center"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_weight="0" android:background="?attr/colorButtonNormal"/>
+            android:layout_weight="0"
+            android:background="?attr/colorButtonNormal"/>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -97,21 +98,54 @@
                 android:src = "@mipmap/ic_arrow_drop_down_black_24dp"
                 android:layout_weight="0"/>
     </LinearLayout>
-    <Button
-            android:text="@string/find"
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="0"
+            android:columnCount="2">
+        <Button
+                android:text="@string/find"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/findRoute"
+                android:onClick="findRoute"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+        <Button
+                android:text="@string/save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/save"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+    </LinearLayout>
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/findRoute"
-            android:onClick="findRoute"
+            android:minHeight="25dp"
+            android:id="@+id/currentRoute"
             android:layout_weight="0"
-            android:textSize="20sp"/>
+            android:paddingRight="2dp"
+            android:paddingLeft="2dp"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:textSize="15sp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/white"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="3">
+            android:minHeight="25dp"
+            android:layout_weight="0"
+            android:columnCount="5">
         <TextView
-                android:text="Из"
+                android:text="@string/textStart2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headStart"
@@ -120,11 +154,15 @@
                 android:paddingLeft="10dp"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:background="@color/colorPrimaryDark"
                 android:textColor="@color/white"/>
         <TextView
-                android:text="В"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"/>
+        <TextView
+                android:text="@string/textEnd2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headEnd"
@@ -133,11 +171,15 @@
                 android:paddingLeft="10dp"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:background="@color/colorPrimaryDark"
                 android:textColor="@color/white"/>
         <TextView
-                android:text="№ авт"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"/>
+        <TextView
+                android:text="@string/textNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headNumber"
@@ -146,14 +188,14 @@
                 android:paddingLeft="10dp"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:background="@color/colorPrimaryDark"
                 android:textColor="@color/white"/>
     </LinearLayout>
 
     <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:id="@+id/result"
             android:layout_weight="1"/>
     <TextView
@@ -163,7 +205,7 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="40dp"
                   android:layout_weight="0"
                   android:orientation="horizontal">
         <ToggleButton

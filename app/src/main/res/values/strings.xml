@@ -6,7 +6,8 @@
     <string name="route">Выбор маршрута</string>
     <string name="start">Начало</string>
     <string name="end">Конец</string>
-    <string name="find">Найти маршрут</string>
+    <string name="find">НАЙТИ</string>
+    <string name="save">СОХРАНИТЬ</string>
     <string name="saveRoute">Сохранить маршрут</string>
     <string name="activitySaved">Сохраненные маршруты</string>
     <string name="activityNew">Новый маршрут</string>
@@ -16,4 +17,7 @@
     <string name="textEnd">В:</string>
     <string name="switchWeekdays">ПН - ПТ</string>
     <string name="switchHolidays">СБ - ВС</string>
+    <string name="textStart2">Откуда</string>
+    <string name="textEnd2">Куда</string>
+    <string name="textNumber">№ авт</string>
 </resources>

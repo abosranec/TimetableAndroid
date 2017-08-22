@@ -25,13 +25,15 @@ public class MainActivity extends Activity {
     private ArrayAdapter arrayAdapterEnd;
     private ToggleButton ButtonWeekdays;
     private ToggleButton ButtonHoliday;
-
+    private TextView textCurrentRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         //initial button on activity
+            //current route
+        textCurrentRoute = findViewById(R.id.currentRoute);
             //start
         start = findViewById(R.id.start);
         ImageView imageStart = findViewById(R.id.imageStart);
@@ -112,6 +114,9 @@ public class MainActivity extends Activity {
     }
     public ToggleButton getButtonHoliday() {
         return ButtonHoliday;
+    }
+    public TextView getTextCurrentRoute() {
+        return textCurrentRoute;
     }
 
     //**********************for menu
