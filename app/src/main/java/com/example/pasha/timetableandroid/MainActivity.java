@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,9 @@ public class MainActivity extends Activity {
     private ToggleButton ButtonWeekdays;
     private ToggleButton ButtonHoliday;
     private TextView textCurrentRoute;
+    private String[] menuTitles;
+    private ListView mDrawerListView;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,14 +88,25 @@ public class MainActivity extends Activity {
             //switch days
         initSwitcher();
 
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, rezultList);
-//        result = findViewById(R.id.result);
-//        findRoute.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                result.setText(result.getText().toString() + "\n" + start.getText() + "\t\t" + end.getText());
-//            }
-//        });
+        //menu drawer
+        menuTitles = getResources().getStringArray(R.array.heads_menu);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        mDrawerListView = findViewById(R.id.left_drawer);
+        mDrawerListView.setAdapter(new ArrayAdapter<>(this,
+                R.layout.drawer_list_item, menuTitles));
+        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                drawerLayout.closeDrawers();
+                switch(i) {
+                    case 2:
+                        resultView.setAdapter(routeAdapter);
+                        routeAdapter.reWrite();
+                        Toast.makeText(getApplicationContext(),"Обновление данных", Toast.LENGTH_SHORT).show();
+                        return;
+                }
+            }
+        });
     }
 
     public AutoCompleteTextView getStart() {
@@ -139,6 +154,10 @@ public class MainActivity extends Activity {
 
     //*********************for find route
     public void findRoute(View view){
+        //clear current route
+        textCurrentRoute.setBackgroundColor(Color.rgb(48,63,159));
+        textCurrentRoute.setText("");
+
         //build route
         routeAdapter.buildRoute(
                 start.getText().toString().toLowerCase(),

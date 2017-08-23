@@ -20,4 +20,11 @@
     <string name="textStart2">Откуда</string>
     <string name="textEnd2">Куда</string>
     <string name="textNumber">№ авт</string>
+    <string-array name="heads_menu">
+        <item>Сохраненные маршруты</item>
+        <item>Новый маршрут</item>
+        <item>Обновить базы</item>
+        <item></item>
+        <item>О приложении</item>
+    </string-array>
 </resources>
