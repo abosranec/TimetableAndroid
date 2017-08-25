@@ -99,6 +99,8 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 drawerLayout.closeDrawers();
                 switch(i) {
+                    case 1:
+                        
                     case 2:
                         resultView.setAdapter(routeAdapter);
                         routeAdapter.reWrite();

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <TextView
+                android:text="@string/saved"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/saved"
+                android:textSize="24sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                android:textStyle="normal|bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="0"
+                android:background="?attr/colorButtonNormal"/>
+
+        <ListView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/saved_result"
+                android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <!-- The navigation drawer -->
+    <ListView
+            android:id="@+id/left_drawer_saved"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#111"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"/>
+
+</android.support.v4.widget.DrawerLayout>

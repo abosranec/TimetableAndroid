@@ -27,4 +27,5 @@
         <item></item>
         <item>О приложении</item>
     </string-array>
+    <string name="saved">Сохраненные маршруты</string>
 </resources>
