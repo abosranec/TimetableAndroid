@@ -1,60 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/button"
         android:layout_centerInParent="true"
         android:baselineAligned="false"
         android:measureWithLargestChild="false">
-
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="4"
-            android:layout_weight="12">
+            android:background="@color/colorPrimaryDark">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:columnCount="4"
+                android:layout_weight="12">
+            <TextView
+                    android:text="@string/textEnd2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/textSevedRoute"
+                    android:layout_weight="1"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                    android:textSize="16sp"
+                    android:background="@color/colorPrimaryDark"
+                    android:textColor="@color/white"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white"/>
+            <TextView
+                    android:text="@string/textNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/headNumber"
+                    android:layout_weight="1"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                    android:textSize="16sp"
+                    android:background="@color/colorPrimaryDark"
+                    android:textColor="@color/white"/>
+        </LinearLayout>
         <TextView
-                android:text="@string/textEnd2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/textSevedRoute"
-                android:layout_weight="1"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-                android:textSize="16sp"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/white"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
                 android:background="@color/white"/>
-        <TextView
-                android:text="@string/textNumber"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/headNumber"
-                android:layout_weight="1"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-                android:textSize="16sp"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/white"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="@color/white"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageDeleteEnd"
+                android:paddingTop="5dp"
+                android:src = "@mipmap/ic_clear_black_24dp"
+                android:layout_weight="1"/>
     </LinearLayout>
-    <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageDeleteEnd"
-            android:paddingTop="5dp"
-            android:src = "@mipmap/ic_clear_black_24dp"
-            android:layout_weight="1"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/white"/>
 </LinearLayout>
