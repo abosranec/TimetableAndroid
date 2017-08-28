@@ -1,6 +1,6 @@
 package com.example.pasha.timetableandroid.main;
 
-public class Route {
+public class Route  implements Comparable<Route>{
     private String busRoute;
     private String busNumber;
     private String start;
@@ -53,5 +53,37 @@ public class Route {
 
     public void setDays(String days) {
         this.days = days;
+    }
+
+    //for sorting
+    @Override
+    public int compareTo(Route route) {
+        String[] time = route.getStart().split(":");
+        int hour = 0;
+        int minute = 0;
+        if (time.length > 1){
+            hour = Integer.parseInt(time[0]);
+            minute = Integer.parseInt(time[1]);
+        }
+        String[] timeThis = this.getStart().split(":");
+        int hourThis = 0;
+        int minuteThis = 0;
+        if (timeThis.length > 1){
+            hourThis = Integer.parseInt(timeThis[0]);
+            minuteThis = Integer.parseInt(timeThis[1]);
+        }
+
+        if (hour == hourThis && minute == minuteThis) {
+            return 0;
+        }
+        if (hour > hourThis) {
+            return -1;
+        } else if (hour < hourThis){
+            return 1;
+        } else if ( minute > minuteThis){
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }

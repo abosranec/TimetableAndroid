@@ -15,9 +15,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 public class RouteAdapter extends BaseAdapter{
 
@@ -139,6 +137,7 @@ public class RouteAdapter extends BaseAdapter{
             }
             listAll.clear();
             listAll.addAll(listRoute);
+            Collections.sort(listAll);
             resultBuild = true;
             choiceDays();
             return null;
