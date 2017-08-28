@@ -61,7 +61,7 @@ public class SavedAdapter extends BaseAdapter {
                 context.deleteFile(saved.getPath());
                 list.remove(saved);
                 savedView.setAdapter(SavedAdapter.this);
-                Toast.makeText(context.getApplicationContext(),"Маршрут удалён!", Toast.LENGTH_LONG).show();
+                Toast.makeText(context.getApplicationContext(),"Маршрут удалён!", Toast.LENGTH_SHORT).show();
             }
         });
         savedRoute.setText(saved.getRoute());

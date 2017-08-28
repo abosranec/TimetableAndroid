@@ -50,8 +50,12 @@ public class MainClass {
 //        }
         ////////////////////////////////////////
         Calendar c = Calendar.getInstance();
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        System.out.println(dayOfWeek);
-
+        int dayOfWeek = c.get(Calendar.HOUR);
+        System.out.println(c.get(Calendar.HOUR_OF_DAY));
+        System.out.println(c.get(Calendar.MINUTE));
+        String string = "14:56";
+        for (String str: string.split(":")) {
+            System.out.println(str);
+        }
     }
 }
