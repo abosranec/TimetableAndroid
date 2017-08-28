@@ -14,8 +14,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -218,5 +217,30 @@ public class RouteAdapter extends BaseAdapter{
             }
         }
         resultView.setAdapter(this);
+    }
+
+    //for save route
+    public void saveRoute(Context context) {
+        if (listAll.size() > 0){
+            String path = stations.get(routeStart) + "--" + stations.get(routeEnd);
+            try {
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(context.openFileOutput(path,Context.MODE_PRIVATE)));
+                writer.write(routeStart + "\n");
+                writer.write(routeEnd + "\n");
+                writer.write(listAll.size() + "\n");
+                for (Route route: listAll) {
+                    writer.write(route.getBusRoute() + "\n");
+                    writer.write(route.getBusNumber() + "\n");
+                    writer.write(route.getStart() + "\n");
+                    writer.write(route.getEnd() + "\n");
+                    writer.write(route.getDays() + "\n");
+                }
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

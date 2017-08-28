@@ -153,7 +153,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //*********************for find route
+    //for find route
     public void findRoute(View view){
         //clear current route
         textCurrentRoute.setBackgroundColor(Color.rgb(48,63,159));
@@ -216,5 +216,10 @@ public class MainActivity extends Activity {
                 }
             }
         });
+    }
+
+    //for save route
+    public void saveRoute(View view) {
+        routeAdapter.saveRoute(this);
     }
 }

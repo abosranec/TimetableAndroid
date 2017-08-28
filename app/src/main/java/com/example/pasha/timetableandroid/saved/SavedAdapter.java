@@ -11,6 +11,10 @@ import android.widget.TextView;
 import com.example.pasha.timetableandroid.R;
 import com.example.pasha.timetableandroid.main.Route;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +24,7 @@ public class SavedAdapter extends BaseAdapter {
 
     public SavedAdapter(Context context, List<Saved> list) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.list = list;
+        initList(context);
     }
 
     @Override
@@ -69,4 +73,37 @@ public class SavedAdapter extends BaseAdapter {
     private Saved getSaved(int position){
         return (Saved)getItem(position);
     }
+
+    //create list from memory
+    private void initList(Context context) {
+        String[] strings = context.fileList();
+        if (strings.length > 0) {
+            for (String path: strings) {
+                try {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(context.openFileInput(path)));
+                    String start = reader.readLine();
+                    String end = reader.readLine();
+                    int size = Integer.parseInt(reader.readLine());
+                    List<Route> listRoute = new ArrayList<>();
+                    for (int i = 0; i < size; i++) {
+                        String busRoute = reader.readLine();
+                        String busNumber = reader.readLine();
+                        String startTime = reader.readLine();
+                        String endTime = reader.readLine();
+                        String days = reader.readLine();
+                        listRoute.add(new Route(busRoute,busNumber,startTime,endTime,days));
+                    }
+                    reader.close();
+                    Saved saved = new Saved(listRoute, start, end);
+                    list.add(saved);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
