@@ -31,6 +31,7 @@ public class RouteAdapter extends BaseAdapter{
     private ToggleButton ButtonWeekdays;
     private ToggleButton ButtonHoliday;
     private TextView textCurrentRoute;
+    private MainActivity context;
 
     public RouteAdapter(MainActivity context) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -39,6 +40,7 @@ public class RouteAdapter extends BaseAdapter{
         this.ButtonWeekdays = context.getButtonWeekdays();
         this.ButtonHoliday = context.getButtonHoliday();
         this.textCurrentRoute = context.getTextCurrentRoute();
+        this.context = context;
     }
 
     @Override
@@ -222,7 +224,7 @@ public class RouteAdapter extends BaseAdapter{
     //for save route
     public void saveRoute(Context context) {
         if (listAll.size() > 0){
-            String path = stations.get(routeStart) + "--" + stations.get(routeEnd);
+            String path = stations.get(routeStart) + "-" + stations.get(routeEnd);
             try {
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(context.openFileOutput(path,Context.MODE_PRIVATE)));
                 writer.write(routeStart + "\n");
@@ -236,11 +238,15 @@ public class RouteAdapter extends BaseAdapter{
                     writer.write(route.getDays() + "\n");
                 }
                 writer.close();
-            } catch (FileNotFoundException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                Toast.makeText(context.getApplicationContext(),"Ошибка сохранения маршрута!", Toast.LENGTH_SHORT).show();
+                return;
             }
+            Toast.makeText(context.getApplicationContext(),"Маршрут сохранен", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(context.getApplicationContext(),"Неправильный маршрут!", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -24,6 +24,10 @@ public class SavedActivity extends Activity {
     private ListView mDrawerListView;
     private DrawerLayout drawerLayout;
 
+    public ListView getSavedView() {
+        return savedView;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,30 +35,7 @@ public class SavedActivity extends Activity {
 
         //initial ListView
         savedView = findViewById(R.id.saved_result);
-        ///////////////////////
-        //before normal
-        List<Saved> list = new ArrayList<>();
-        List<Route> listAll = new ArrayList<>();
-        listAll.add(new Route("06:14", "asasd", "06:14", "asasd", "asasd"));
-        listAll.add(new Route("07:14", "asasd", "07:14", "asasd", "asasd"));
-        listAll.add(new Route("08:14", "asasd", "08:14", "asasd", "asasd"));
-        listAll.add(new Route("09:14", "asasd", "09:14", "asasd", "asasd"));
-        listAll.add(new Route("10:14", "asasd", "10:14", "asasd", "asasd"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        list.add(new Saved(listAll, "Скориничи", "Слуцкий гостинец"));
-        ///////////////////////
-        savedAdapter = new SavedAdapter(this, list);
+        savedAdapter = new SavedAdapter(this);
         savedView.setAdapter(savedAdapter);
 
         //menu drawer
@@ -79,5 +60,7 @@ public class SavedActivity extends Activity {
                 }
             }
         });
+
+
     }
 }

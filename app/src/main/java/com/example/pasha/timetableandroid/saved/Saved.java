@@ -7,13 +7,15 @@ import java.util.List;
 
 public class Saved {
     private List<Route> listAll = new ArrayList<>();
+    private String path = "";
     private String routeStart = "";
     private String routeEnd = "";
 
-    public Saved(List<Route> listAll, String routeStart, String routeEnd) {
+    public Saved(List<Route> listAll, String routeStart, String routeEnd, String path) {
         this.listAll.addAll(listAll);
         this.routeStart = routeStart;
         this.routeEnd = routeEnd;
+        this.path = path;
     }
 
     public String getRoute(){
@@ -26,5 +28,9 @@ public class Saved {
             times.append("; ");
         }
         return times.toString();
+    }
+
+    public String getPath() {
+        return path;
     }
 }
