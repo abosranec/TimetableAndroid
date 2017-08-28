@@ -1,17 +1,15 @@
 package com.example.pasha.timetableandroid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
-import com.example.pasha.timetableandroid.routes.Route;
-import com.example.pasha.timetableandroid.routes.RouteAdapter;
-import com.example.pasha.timetableandroid.routes.Stations;
+import com.example.pasha.timetableandroid.main.RouteAdapter;
 
 import java.util.Calendar;
 
@@ -27,7 +25,6 @@ public class MainActivity extends Activity {
     private ToggleButton ButtonWeekdays;
     private ToggleButton ButtonHoliday;
     private TextView textCurrentRoute;
-    private String[] menuTitles;
     private ListView mDrawerListView;
     private DrawerLayout drawerLayout;
 
@@ -89,7 +86,7 @@ public class MainActivity extends Activity {
         initSwitcher();
 
         //menu drawer
-        menuTitles = getResources().getStringArray(R.array.heads_menu);
+        String[] menuTitles = getResources().getStringArray(R.array.heads_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
         mDrawerListView = findViewById(R.id.left_drawer);
         mDrawerListView.setAdapter(new ArrayAdapter<>(this,
@@ -99,8 +96,10 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 drawerLayout.closeDrawers();
                 switch(i) {
-                    case 1:
-                        
+                    case 0:
+                        Intent intent = new Intent(getApplicationContext(), SavedActivity.class);
+                        startActivity(intent);
+                        return;
                     case 2:
                         resultView.setAdapter(routeAdapter);
                         routeAdapter.reWrite();

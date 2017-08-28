@@ -1,6 +1,5 @@
-package com.example.pasha.timetableandroid.routes;
+package com.example.pasha.timetableandroid.main;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -16,10 +15,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.TreeMap;
 
 public class RouteAdapter extends BaseAdapter{
 

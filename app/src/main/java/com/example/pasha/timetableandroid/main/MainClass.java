@@ -1,19 +1,7 @@
-package com.example.pasha.timetableandroid.routes;
-
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+package com.example.pasha.timetableandroid.main;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.TreeMap;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class MainClass {
     public static void main(String[] args) throws IOException {

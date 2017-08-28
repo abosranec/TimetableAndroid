@@ -1,4 +1,4 @@
-package com.example.pasha.timetableandroid.routes;
+package com.example.pasha.timetableandroid.main;
 
 public class Route {
     private String busRoute;

@@ -1,11 +1,9 @@
-package com.example.pasha.timetableandroid.routes;
+package com.example.pasha.timetableandroid.main;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
 import com.example.pasha.timetableandroid.MainActivity;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
