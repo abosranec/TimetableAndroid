@@ -8,14 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-import com.example.pasha.timetableandroid.main.Route;
-import com.example.pasha.timetableandroid.main.RouteAdapter;
-import com.example.pasha.timetableandroid.saved.Saved;
+import com.example.pasha.timetableandroid.chosen.ChosenActivity;
 import com.example.pasha.timetableandroid.saved.SavedAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SavedActivity extends Activity {
 
@@ -56,7 +50,7 @@ public class SavedActivity extends Activity {
                     case 2:
 //                        RouteAdapter routeAdapter = new RouteAdapter()
 //                        Toast.makeText(getApplicationContext(),"Обновление данных", Toast.LENGTH_SHORT).show();
-                        return;
+//                        return;
                 }
             }
         });

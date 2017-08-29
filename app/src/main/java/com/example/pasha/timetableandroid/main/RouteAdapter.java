@@ -26,8 +26,8 @@ public class RouteAdapter extends BaseAdapter{
     private String routeEnd = "";
     private LayoutInflater inflater;
     private ListView resultView;
-    private ToggleButton ButtonWeekdays;
     private ToggleButton ButtonHoliday;
+    private ToggleButton ButtonWeekdays;
     private TextView textCurrentRoute;
     private MainActivity context;
     private ProgressBar progressBar;

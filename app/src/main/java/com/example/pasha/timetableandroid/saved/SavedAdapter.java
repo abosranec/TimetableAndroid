@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.example.pasha.timetableandroid.MainActivity;
 import com.example.pasha.timetableandroid.R;
 import com.example.pasha.timetableandroid.SavedActivity;
 import com.example.pasha.timetableandroid.chosen.ChosenActivity;
@@ -57,14 +56,18 @@ public class SavedAdapter extends BaseAdapter {
 
         //texts
         TextView savedRoute = viewLocal.findViewById(R.id.textSevedRoute);
-//        savedRoute.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context.getApplicationContext(), ChosenActivity.class);
-//                context.startActivity(intent);
-//            }
-//        });
         TextView savedTimes = viewLocal.findViewById(R.id.headNumber);
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context.getApplicationContext(), ChosenActivity.class);
+                intent.putExtra("path", saved.getPath());
+                context.startActivity(intent);
+            }
+        };
+        savedRoute.setOnClickListener(onClickListener);
+        savedTimes.setOnClickListener(onClickListener);
+
         //image
         ImageView delete = viewLocal.findViewById(R.id.imageDeleteEnd);
         delete.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +126,7 @@ public class SavedAdapter extends BaseAdapter {
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
