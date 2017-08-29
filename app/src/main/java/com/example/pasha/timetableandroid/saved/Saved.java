@@ -44,10 +44,12 @@ public class Saved {
             else
                 day = "буд";
 
+            int hourThis = c.get(Calendar.HOUR_OF_DAY);
+            int minuteThis = c.get(Calendar.MINUTE);
             if (day.equals(route.getDays())) {
-                if (hour >= c.get(Calendar.HOUR_OF_DAY)) {
+                if ((hour > hourThis) || (hour == hourThis && minute >= minuteThis)) {
                     times.append(startTime);
-                    if (i++ > 3) {
+                    if (i++ > 8) {
                         break;
                     }
                     times.append("; ");

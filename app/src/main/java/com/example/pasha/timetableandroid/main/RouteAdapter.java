@@ -94,6 +94,9 @@ public class RouteAdapter extends BaseAdapter{
     public void buildRoute(String routeStart, String routeEnd){
         this.routeStart = routeStart;
         this.routeEnd = routeEnd;
+        listAll.clear();
+        list.clear();
+        resultView.setAdapter(RouteAdapter.this);
         new BuildRoute().execute();
     }
 

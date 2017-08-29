@@ -21,7 +21,10 @@
                 android:gravity="center"
                 android:layout_weight="0"
                 android:background="?attr/colorButtonNormal"/>
-
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/white"/>
         <ListView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
