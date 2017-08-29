@@ -30,6 +30,7 @@ public class RouteAdapter extends BaseAdapter{
     private ToggleButton ButtonHoliday;
     private TextView textCurrentRoute;
     private MainActivity context;
+    private ProgressBar progressBar;
 
     public RouteAdapter(MainActivity context) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -39,6 +40,7 @@ public class RouteAdapter extends BaseAdapter{
         this.ButtonHoliday = context.getButtonHoliday();
         this.textCurrentRoute = context.getTextCurrentRoute();
         this.context = context;
+        this.progressBar = context.getProgressBar();
     }
 
     @Override
@@ -97,6 +99,7 @@ public class RouteAdapter extends BaseAdapter{
         listAll.clear();
         list.clear();
         resultView.setAdapter(RouteAdapter.this);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         new BuildRoute().execute();
     }
 
@@ -149,6 +152,7 @@ public class RouteAdapter extends BaseAdapter{
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            progressBar.setVisibility(ProgressBar.INVISIBLE);
             resultView.setAdapter(RouteAdapter.this);
             buildCurrentRoute();
         }

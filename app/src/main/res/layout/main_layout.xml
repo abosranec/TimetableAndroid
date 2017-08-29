@@ -199,11 +199,22 @@
                     android:textColor="@color/white"/>
         </LinearLayout>
 
-        <ListView
+        <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:id="@+id/result"
-                android:layout_weight="1"/>
+                android:layout_weight="1">
+            <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/result"/>
+            <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressBar"
+                    android:layout_gravity="center"
+                    android:theme="@style/CircularProgress"
+                    style="?android:attr/progressBarStyleLarge"/>
+        </FrameLayout>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="5dp"

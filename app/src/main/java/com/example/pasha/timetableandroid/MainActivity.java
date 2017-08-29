@@ -27,12 +27,16 @@ public class MainActivity extends Activity {
     private TextView textCurrentRoute;
     private ListView mDrawerListView;
     private DrawerLayout drawerLayout;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         //initial button on activity
+            //progress bar
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
             //current route
         textCurrentRoute = findViewById(R.id.currentRoute);
             //start
@@ -134,24 +138,27 @@ public class MainActivity extends Activity {
     public TextView getTextCurrentRoute() {
         return textCurrentRoute;
     }
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
 
     //**********************for menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_items, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.nav_refresh:
-                resultView.setAdapter(routeAdapter);
-                routeAdapter.reWrite();
-                //Toast.makeText(getApplicationContext(),"blablabla ", Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_items, menu);
+//        return true;
+//    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch(item.getItemId()) {
+//            case R.id.nav_refresh:
+//                resultView.setAdapter(routeAdapter);
+//                routeAdapter.reWrite();
+//                //Toast.makeText(getApplicationContext(),"blablabla ", Toast.LENGTH_SHORT).show();
+//                return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     //for find route
     public void findRoute(View view){

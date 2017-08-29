@@ -1,13 +1,16 @@
 package com.example.pasha.timetableandroid.saved;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.example.pasha.timetableandroid.MainActivity;
 import com.example.pasha.timetableandroid.R;
 import com.example.pasha.timetableandroid.SavedActivity;
+import com.example.pasha.timetableandroid.chosen.ChosenActivity;
 import com.example.pasha.timetableandroid.main.Route;
 
 import java.io.BufferedReader;
@@ -52,8 +55,17 @@ public class SavedAdapter extends BaseAdapter {
 
         final Saved saved = getSaved(i);
 
+        //texts
         TextView savedRoute = viewLocal.findViewById(R.id.textSevedRoute);
+//        savedRoute.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context.getApplicationContext(), ChosenActivity.class);
+//                context.startActivity(intent);
+//            }
+//        });
         TextView savedTimes = viewLocal.findViewById(R.id.headNumber);
+        //image
         ImageView delete = viewLocal.findViewById(R.id.imageDeleteEnd);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
