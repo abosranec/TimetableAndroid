@@ -48,9 +48,8 @@ public class SavedActivity extends Activity {
                         startActivity(intent);
                         return;
                     case 2:
-//                        RouteAdapter routeAdapter = new RouteAdapter()
-//                        Toast.makeText(getApplicationContext(),"Обновление данных", Toast.LENGTH_SHORT).show();
-//                        return;
+                        new Updater(getApplicationContext()).execute();
+                        return;
                 }
             }
         });

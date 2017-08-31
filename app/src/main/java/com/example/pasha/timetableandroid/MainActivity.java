@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
                     case 2:
                         resultView.setAdapter(routeAdapter);
                         routeAdapter.reWrite();
-                        Toast.makeText(getApplicationContext(),"Обновление данных", Toast.LENGTH_SHORT).show();
+                        //new Updater(getApplicationContext()).execute();
                         return;
                 }
             }

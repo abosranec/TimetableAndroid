@@ -4,7 +4,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 import com.example.pasha.timetableandroid.MainActivity;
+import com.example.pasha.timetableandroid.Updater;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -22,6 +24,7 @@ public class Stations extends TreeMap<String, String> {
     private ArrayAdapter arrayAdapterStart;
     private AutoCompleteTextView end;
     private ArrayAdapter arrayAdapterEnd;
+    private boolean good;
 
     public Stations(MainActivity context) {
         super();
@@ -76,6 +79,7 @@ public class Stations extends TreeMap<String, String> {
                         tableElements.get(tableElements.size() - 1).attr("value"));
             } catch (IOException e) {
                 e.printStackTrace();
+                good = false;
                 return null;
             }
             if(nb.size() > 0){
@@ -98,13 +102,22 @@ public class Stations extends TreeMap<String, String> {
                     ed.putString(key, nb.get(key));
                 }
                 ed.apply();
+            }else{
+                good = false;
+                return null;
             }
+            good = true;
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            if (good) {
+                Toast.makeText(context.getApplicationContext(), "Базы данных обновлены", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(context.getApplicationContext(), "Ошибка обновления баз данных!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

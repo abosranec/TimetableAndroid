@@ -10,6 +10,7 @@ import android.widget.*;
 import com.example.pasha.timetableandroid.MainActivity;
 import com.example.pasha.timetableandroid.R;
 import com.example.pasha.timetableandroid.SavedActivity;
+import com.example.pasha.timetableandroid.Updater;
 import com.example.pasha.timetableandroid.saved.SavedAdapter;
 
 import java.util.Calendar;
@@ -67,9 +68,8 @@ public class ChosenActivity extends Activity {
                         startActivity(intent2);
                         return;
                     case 2:
-//                        RouteAdapter routeAdapter = new RouteAdapter()
-//                        Toast.makeText(getApplicationContext(),"Обновление данных", Toast.LENGTH_SHORT).show();
-//                        return;
+                        new Updater(getApplicationContext()).execute();
+                        return;
                 }
             }
         });
