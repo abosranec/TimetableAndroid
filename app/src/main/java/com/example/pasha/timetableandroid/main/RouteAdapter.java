@@ -111,7 +111,6 @@ public class RouteAdapter extends BaseAdapter{
             List<Route> listRoute = new ArrayList<>();
             String html = getHtmlForRoute();
 
-            //Toast.makeText(context.getApplicationContext(),"Ошибка доступа в интернет!", Toast.LENGTH_SHORT).show();
             try {
                 Document doc = Jsoup.connect(html).get();
                 Elements tableElements = doc.select("table[class=schedule_table]");

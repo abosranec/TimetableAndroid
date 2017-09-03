@@ -4,11 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
+import com.example.pasha.timetableandroid.main.Route;
+import com.example.pasha.timetableandroid.saved.Saved;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -40,7 +46,12 @@ public class Updater extends AsyncTask<Void, Void, Void> {
         if (resultStation.equals(Updater.GOOD)) {
             Toast.makeText(context.getApplicationContext(), "Базы данных обновлены", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(context.getApplicationContext(), "Ошибка обновления!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Ошибка обновления баз данных!", Toast.LENGTH_SHORT).show();
+        }
+        if (resultSaved.equals(Updater.GOOD)) {
+            Toast.makeText(context.getApplicationContext(), "Сохранённые маршруты обновлены", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(context.getApplicationContext(), "Ошибка обновления марштутов!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -78,6 +89,86 @@ public class Updater extends AsyncTask<Void, Void, Void> {
 
     //update saved
     private String updateSaved() {
-        return "";
+
+
+
+
+
+        String[] strings = context.fileList();
+        if (strings.length > 0) {
+            for (String path: strings) {
+                try {
+                    String[] s = path.split("-");
+                    String html = "http://www.minsktrans.by/mg/suburbt.php?find_runs=1&minsk=" + s[0] + "&other=" + s[1];
+                    List<Route> listRoute = new ArrayList<>();
+                    //download update route
+                    try {
+                        Document doc = Jsoup.connect(html).get();
+                        Elements tableElements = doc.select("table[class=schedule_table]");
+                        Elements tableRowElements = tableElements.select("tr");
+                        for (int i = 2; i < tableRowElements.size(); i++) {
+                            Element row = tableRowElements.get(i);
+                            Elements rowItems = row.select("th");
+                            if (rowItems.size() == 0)
+                                rowItems = row.select("td");
+                            //made routes
+                            String days = "";
+                            if (rowItems.get(3).text().equals("пн вт ср чт пт"))
+                                days = "буд";
+                            else
+                                days = "вых";
+                            listRoute.add(new Route(
+                                    rowItems.get(0).text(),
+                                    "***",
+                                    rowItems.get(1).text(),
+                                    rowItems.get(2).text(),
+                                    days));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return Updater.ERROR;
+                    }
+
+                    //read and write route
+                    if (listRoute.size() > 0){
+                        try {
+                            //read old route
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(context.openFileInput(path)));
+                            String start = reader.readLine();
+                            String end = reader.readLine();
+                            reader.close();
+
+                            //write new route
+                            context.deleteFile(path);
+                            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(context.openFileOutput(path,Context.MODE_PRIVATE)));
+                            writer.write(start + "\n");
+                            writer.write(end + "\n");
+                            writer.write(listRoute.size() + "\n");
+                            for (Route route: listRoute) {
+                                writer.write(route.getBusRoute() + "\n");
+                                writer.write(route.getBusNumber() + "\n");
+                                writer.write(route.getStart() + "\n");
+                                writer.write(route.getEnd() + "\n");
+                                writer.write(route.getDays() + "\n");
+                            }
+                            writer.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return Updater.ERROR;
+                        }
+                    }else{
+                        return Updater.ERROR;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return Updater.ERROR;
+                }
+            }
+        }else{
+            return Updater.ERROR;
+        }
+
+        return Updater.GOOD;
     }
 }

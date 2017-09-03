@@ -105,9 +105,9 @@ public class MainActivity extends Activity {
                         startActivity(intent);
                         return;
                     case 2:
-                        resultView.setAdapter(routeAdapter);
-                        routeAdapter.reWrite();
-                        //new Updater(getApplicationContext()).execute();
+//                        resultView.setAdapter(routeAdapter);
+//                        routeAdapter.reWrite();
+                        new Updater(getApplicationContext()).execute();
                         return;
                 }
             }
