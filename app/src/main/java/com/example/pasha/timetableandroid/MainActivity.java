@@ -110,7 +110,7 @@ public class MainActivity extends Activity {
                         startActivity(intent);
                         return;
                     case 2:
-                        //Toast.makeText(getApplicationContext(),"Запущено обновление данных", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Запущено обновление данных", Toast.LENGTH_SHORT).show();
                         new Updater(getApplicationContext()).execute();
                         return;
                 }
