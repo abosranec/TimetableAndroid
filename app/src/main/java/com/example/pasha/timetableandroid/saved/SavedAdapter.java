@@ -86,14 +86,8 @@ public class SavedAdapter extends BaseAdapter {
 
         if (i % 2 == 0) {
             savedRoute.setBackgroundColor(Color.argb(120, 0, 0, 255));
-//            savedTimes.setBackgroundColor(Color.argb(130, 220, 220, 220));
-//            delete.setBackgroundColor(Color.argb(130, 220, 220, 220));
-//            busEnd.setBackgroundColor(Color.argb(130, 220, 220, 220));
         } else{
             savedRoute.setBackgroundColor(Color.argb(255, 48, 63, 159));
-//            savedTimes.setBackgroundColor(Color.argb(0, 255, 255, 255));
-//            delete.setBackgroundColor(Color.argb(0, 255, 255, 255));
-//            busEnd.setBackgroundColor(Color.argb(0, 255, 255, 255));
         }
         return viewLocal;
     }

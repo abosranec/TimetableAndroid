@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.example.pasha.timetableandroid.chosen.ChosenActivity;
 import com.example.pasha.timetableandroid.saved.SavedAdapter;
 
@@ -48,6 +49,7 @@ public class SavedActivity extends Activity {
                         startActivity(intent);
                         return;
                     case 2:
+                        //Toast.makeText(getApplicationContext(),"Запущено обновление данных", Toast.LENGTH_SHORT).show();
                         new Updater(getApplicationContext()).execute();
                         return;
                 }

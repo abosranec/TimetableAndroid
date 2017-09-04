@@ -15,11 +15,9 @@
     <string name="activityAbout">О приложении</string>
     <string name="textStart">Из:</string>
     <string name="textEnd">В:</string>
-    <string name="switchWeekdays">БД</string>
-    <string name="switchHolidays">ВХ</string>
     <string name="textStart2">Откуда</string>
     <string name="textEnd2">Куда</string>
-    <string name="textNumber">№ авт</string>
+    <string name="textNumber">Регулярность</string>
     <string-array name="heads_menu">
         <item>Сохраненные маршруты</item>
         <item>Новый маршрут</item>
@@ -28,4 +26,11 @@
         <item>О приложении</item>
     </string-array>
     <string name="saved">Сохраненные маршруты</string>
+    <string name="switchMonday">ПН</string>
+    <string name="switchTuesday">ВТ</string>
+    <string name="switchWednesday">СР</string>
+    <string name="switchThursday">ЧТ</string>
+    <string name="switchFriday">ПТ</string>
+    <string name="switchSaturday">СБ</string>
+    <string name="switchSunday">ВС</string>
 </resources>

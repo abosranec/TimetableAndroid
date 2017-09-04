@@ -25,8 +25,8 @@ public class Updater extends AsyncTask<Void, Void, Void> {
     private Context context;
     private String resultStation = "init";
     private String resultSaved = "init";
-    public static final String ERROR = "error";
-    public static final String GOOD = "good";
+    private static final String ERROR = "error";
+    private static final String GOOD = "good";
 
     public Updater(Context context) {
         super();
@@ -119,7 +119,7 @@ public class Updater extends AsyncTask<Void, Void, Void> {
                                 days = "вых";
                             listRoute.add(new Route(
                                     rowItems.get(0).text(),
-                                    "***",
+                                    rowItems.get(3).text().toUpperCase(),
                                     rowItems.get(1).text(),
                                     rowItems.get(2).text(),
                                     days));

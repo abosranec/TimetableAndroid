@@ -26,21 +26,28 @@ public class RouteAdapter extends BaseAdapter{
     private String routeEnd = "";
     private LayoutInflater inflater;
     private ListView resultView;
-    private ToggleButton ButtonHoliday;
-    private ToggleButton ButtonWeekdays;
     private TextView textCurrentRoute;
     private MainActivity context;
     private ProgressBar progressBar;
+    private HashMap<String, Integer> dayOfWeek = new HashMap<>();
 
     public RouteAdapter(MainActivity context) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         stations = new Stations(context);
         this.resultView = context.getResultView();
-        this.ButtonWeekdays = context.getButtonWeekdays();
-        this.ButtonHoliday = context.getButtonHoliday();
         this.textCurrentRoute = context.getTextCurrentRoute();
         this.context = context;
         this.progressBar = context.getProgressBar();
+
+        //init dayOfWeek
+        dayOfWeek.put("ЕЖЕДН", 0);
+        dayOfWeek.put("ВС", 1);
+        dayOfWeek.put("ПН", 2);
+        dayOfWeek.put("ВТ", 3);
+        dayOfWeek.put("СР", 4);
+        dayOfWeek.put("ЧТ", 5);
+        dayOfWeek.put("ПТ", 6);
+        dayOfWeek.put("СБ", 7);
     }
 
     @Override
@@ -129,7 +136,7 @@ public class RouteAdapter extends BaseAdapter{
                         days = "вых";
                     listRoute.add(new Route(
                             rowItems.get(0).text(),
-                            "***",
+                            rowItems.get(3).text().toUpperCase(),
                             rowItems.get(1).text(),
                             rowItems.get(2).text(),
                             days));
@@ -188,43 +195,55 @@ public class RouteAdapter extends BaseAdapter{
         stations.reWrite();
     }
 
+
+
+
     //rebuild list with days of week
     private void choiceDays(){
         Calendar c = Calendar.getInstance();
         list.clear();
-        if(c.get(Calendar.DAY_OF_WEEK) == 1 || c.get(Calendar.DAY_OF_WEEK) == 7 ){
-            for (Route route: listAll) {
-                if (route.getDays().equals("вых")){
-                    list.add(route);
+        for (Route route: listAll) {
+            String[] regular = route.getBusNumber().split(" ");
+            for (String str: regular){
+                int currentDay = c.get(Calendar.DAY_OF_WEEK);
+                int neededDay;
+                try {
+                    neededDay = dayOfWeek.get(str);
+                }catch(Exception e){
+                    str = "ежедн";
+                    neededDay = dayOfWeek.get(str);
                 }
-            }
-        }
-        else{
-            for (Route route: listAll) {
-                if (route.getDays().equals("буд")){
+                if (currentDay == neededDay || neededDay == 0){
                     list.add(route);
+                    break;
                 }
             }
         }
     }
-    public void setHolidays(){
+    public void setDay(String day){
         list.clear();
         for (Route route: listAll) {
-            if (route.getDays().equals("вых")){
+            String[] regular = route.getBusNumber().split(" ");
+            for (String str: regular){
+                int currentDay = dayOfWeek.get(day);
+                int neededDay;
+                try {
+                    neededDay = dayOfWeek.get(str);
+                }catch(Exception e){
+                    str = "ежедн";
+                    neededDay = dayOfWeek.get(str);
+                }
+                if (currentDay == neededDay || neededDay == 0){
                     list.add(route);
+                    break;
+                }
             }
         }
         resultView.setAdapter(this);
     }
-    public void setWeekdays(){
-        list.clear();
-        for (Route route: listAll) {
-            if (route.getDays().equals("буд")){
-                list.add(route);
-            }
-        }
-        resultView.setAdapter(this);
-    }
+
+
+
 
     //for save route
     public void saveRoute(Context context) {

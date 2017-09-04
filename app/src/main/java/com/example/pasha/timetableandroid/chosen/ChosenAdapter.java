@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class ChosenAdapter extends BaseAdapter {
@@ -31,6 +32,7 @@ public class ChosenAdapter extends BaseAdapter {
     private String routeStart = "";
     private String routeEnd = "";
     private TextView route;
+    private HashMap<String, Integer> dayOfWeek = new HashMap<>();
 
     public ChosenAdapter(ChosenActivity context) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -39,6 +41,15 @@ public class ChosenAdapter extends BaseAdapter {
         this.chosenView = context.getChosenView();
         this.route = context.getRoute();
         route.setText(routeStart + " -> " + routeEnd);
+        //init dayOfWeek
+        dayOfWeek.put("ЕЖЕДН", 0);
+        dayOfWeek.put("ВС", 1);
+        dayOfWeek.put("ПН", 2);
+        dayOfWeek.put("ВТ", 3);
+        dayOfWeek.put("СР", 4);
+        dayOfWeek.put("ЧТ", 5);
+        dayOfWeek.put("ПТ", 6);
+        dayOfWeek.put("СБ", 7);
     }
 
     @Override
@@ -118,31 +129,46 @@ public class ChosenAdapter extends BaseAdapter {
         }
     }
 
+
     //rebuild list with days of week
     private void choiceDays(){
         Calendar c = Calendar.getInstance();
-        if(c.get(Calendar.DAY_OF_WEEK) == 1 || c.get(Calendar.DAY_OF_WEEK) == 7 ){
-            setHolidays();
-        }
-        else{
-            setWeekdays();
-        }
-    }
-    //for tongle button
-    public void setHolidays(){
         list.clear();
         for (Route route: listAll) {
-            if (route.getDays().equals("вых")){
-                list.add(route);
+            String[] regular = route.getBusNumber().split(" ");
+            for (String str: regular){
+                int currentDay = c.get(Calendar.DAY_OF_WEEK);
+                int neededDay;
+                try {
+                    neededDay = dayOfWeek.get(str);
+                }catch(Exception e){
+                    str = "ежедн";
+                    neededDay = dayOfWeek.get(str);
+                }
+                if (currentDay == neededDay || neededDay == 0){
+                    list.add(route);
+                    break;
+                }
             }
         }
-        chosenView.setAdapter(this);
     }
-    public void setWeekdays(){
+    public void setDay(String day){
         list.clear();
         for (Route route: listAll) {
-            if (route.getDays().equals("буд")){
-                list.add(route);
+            String[] regular = route.getBusNumber().split(" ");
+            for (String str: regular){
+                int currentDay = dayOfWeek.get(day);
+                int neededDay;
+                try {
+                    neededDay = dayOfWeek.get(str);
+                }catch(Exception e){
+                    str = "ежедн";
+                    neededDay = dayOfWeek.get(str);
+                }
+                if (currentDay == neededDay || neededDay == 0){
+                    list.add(route);
+                    break;
+                }
             }
         }
         chosenView.setAdapter(this);

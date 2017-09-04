@@ -7,7 +7,8 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:orientation="vertical">
+                  android:orientation="vertical"
+                  android:background="@color/middle">
         <TextView
                 android:text="@string/route"
                 android:layout_width="match_parent"
@@ -15,12 +16,12 @@
                 android:id="@+id/route"
                 android:textSize="24sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-                android:textStyle="normal|bold"
                 android:textAlignment="center"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_weight="0"
-                android:background="?attr/colorButtonNormal"/>
+                android:background="@color/blue2"
+                android:textColor="@color/white"/>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -30,13 +31,15 @@
                     android:text="@string/textStart"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="2dp"
                     android:id="@+id/textStart"
                     android:textSize="18sp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textStyle="normal|bold"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
+                    android:layout_gravity="center"
+                    android:gravity="start"
                     android:layout_weight="0"/>
             <AutoCompleteTextView
                     android:layout_width="wrap_content"
@@ -73,13 +76,15 @@
                     android:text="@string/textEnd"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="2dp"
                     android:id="@+id/textEnd"
                     android:textSize="18sp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textStyle="normal|bold"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
+                    android:layout_gravity="center"
+                    android:gravity="start"
                     android:layout_weight="0"/>
             <AutoCompleteTextView
                     android:layout_width="wrap_content"
@@ -120,7 +125,8 @@
                     android:id="@+id/findRoute"
                     android:onClick="findRoute"
                     android:layout_weight="1"
-                    android:textSize="18sp"/>
+                    android:padding="0dp"
+                    android:textSize="20sp"/>
             <Button
                     android:text="@string/save"
                     android:layout_width="0dp"
@@ -128,7 +134,8 @@
                     android:id="@+id/save"
                     android:onClick="saveRoute"
                     android:layout_weight="1"
-                    android:textSize="18sp"/>
+                    android:padding="0dp"
+                    android:textSize="20sp"/>
         </LinearLayout>
         <TextView
                 android:layout_width="match_parent"
@@ -141,7 +148,7 @@
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                 android:textSize="15sp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/blue2"
                 android:textColor="@color/white"/>
         <TextView
                 android:layout_width="match_parent"
@@ -159,13 +166,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/headStart"
-                    android:layout_weight="0.333"
+                    android:layout_weight="1"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/blue2"
                     android:textColor="@color/white"/>
             <TextView
                     android:layout_width="1dp"
@@ -176,13 +183,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/headEnd"
-                    android:layout_weight="0.333"
+                    android:layout_weight="1"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/blue2"
                     android:textColor="@color/white"/>
             <TextView
                     android:layout_width="1dp"
@@ -193,13 +200,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/headNumber"
-                    android:layout_weight="0.333"
+                    android:layout_weight="2"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/blue2"
                     android:textColor="@color/white"/>
         </LinearLayout>
 
@@ -221,8 +228,8 @@
         </FrameLayout>
         <TextView
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="@color/colorPrimaryDark"/>
+                android:layout_height="3dp"
+                android:background="@color/blue2"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                       android:layout_width="match_parent"
@@ -232,66 +239,97 @@
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/toggleWeekdays"
+                    android:id="@+id/toggleMonday"
                     android:layout_weight="1"
-                    android:textOn="@string/switchWeekdays"
-                    android:textOff="@string/switchWeekdays"
-                    android:textSize="18sp"
-                    android:padding="0dp"/>
+                    android:textOn="@string/switchMonday"
+                    android:textOff="@string/switchMonday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/toggleHolidays"
+                    android:id="@+id/toggleTuesday"
                     android:layout_weight="1"
-                    android:textOn="@string/switchHolidays"
-                    android:textOff="@string/switchHolidays"
-                    android:textSize="18sp"
-                    android:padding="0dp"/>
+                    android:textOn="@string/switchTuesday"
+                    android:textOff="@string/switchTuesday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/toggleWednesday"
                     android:layout_weight="1"
-                    android:textOn="СР"
-                    android:textOff="СР"
-                    android:textSize="18sp"
-                    android:padding="0dp"/>
+                    android:textOn="@string/switchWednesday"
+                    android:textOff="@string/switchWednesday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/toggleThursday"
                     android:layout_weight="1"
-                    android:textOn="ЧТ"
-                    android:textOff="ЧТ"
-                    android:textSize="18sp"
-                    android:padding="0dp"/>
+                    android:textOn="@string/switchThursday"
+                    android:textOff="@string/switchThursday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/toggleFriday"
                     android:layout_weight="1"
-                    android:textOn="ПТ"
-                    android:textOff="ПТ"
-                    android:textSize="18sp"
-                    android:padding="0dp"/>
+                    android:textOn="@string/switchFriday"
+                    android:textOff="@string/switchFriday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/toggleSaturday"
                     android:layout_weight="1"
-                    android:textOn="СБ"
-                    android:textOff="СБ"
-                    android:textSize="18sp"
-                    android:padding="0dp"/>
+                    android:textOn="@string/switchSaturday"
+                    android:textOff="@string/switchSaturday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/toggleSunday"
                     android:layout_weight="1"
-                    android:textOn="ВС"
-                    android:textOff="ВС"
-                    android:textSize="18sp"
-                    android:padding="0dp"/>
+                    android:textOn="@string/switchSunday"
+                    android:textOff="@string/switchSunday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
         </LinearLayout>
     </LinearLayout>
 

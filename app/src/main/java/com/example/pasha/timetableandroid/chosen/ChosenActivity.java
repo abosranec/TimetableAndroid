@@ -21,8 +21,13 @@ public class ChosenActivity extends Activity {
     private ChosenAdapter chosenAdapter;
     private ListView mDrawerListView;
     private DrawerLayout drawerLayout;
-    private ToggleButton buttonWeekdays;
-    private ToggleButton buttonHoliday;
+    private ToggleButton ButtonMonday;
+    private ToggleButton ButtonTuesday;
+    private ToggleButton ButtonWednesday;
+    private ToggleButton ButtonThursday;
+    private ToggleButton ButtonFriday;
+    private ToggleButton ButtonSaturday;
+    private ToggleButton ButtonSunday;
     private TextView route;
 
     public ListView getChosenView() {
@@ -68,6 +73,7 @@ public class ChosenActivity extends Activity {
                         startActivity(intent2);
                         return;
                     case 2:
+                        //Toast.makeText(getApplicationContext(),"Запущено обновление данных", Toast.LENGTH_SHORT).show();
                         new Updater(getApplicationContext()).execute();
                         return;
                 }
@@ -78,53 +84,68 @@ public class ChosenActivity extends Activity {
 
     //switch days
     private void initSwitcher(){
-        buttonWeekdays = findViewById(R.id.toggleWeekdaysChosen);
-        //buttonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
-        buttonHoliday = findViewById(R.id.toggleHolidaysChosen);
-        //buttonHoliday.setBackgroundColor(Color.rgb(200,200,200));
-        buttonWeekdays.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ButtonMonday = findViewById(R.id.toggleMondayChosen);
+        ButtonTuesday = findViewById(R.id.toggleTuesdayChosen);
+        ButtonWednesday = findViewById(R.id.toggleWednesdayChosen);
+        ButtonThursday = findViewById(R.id.toggleThursdayChosen);
+        ButtonFriday = findViewById(R.id.toggleFridayChosen);
+        ButtonSaturday = findViewById(R.id.toggleSaturdayChosen);
+        ButtonSunday = findViewById(R.id.toggleSundayChosen);
+        CompoundButton.OnCheckedChangeListener changeListener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
+                    resetSwitchAll();
                     compoundButton.setBackgroundColor(Color.argb(120,0,0, 255));
                     compoundButton.setTextColor(Color.rgb(255,255, 255));
-                    chosenAdapter.setWeekdays();
-                    buttonHoliday.setChecked(false);
-                    buttonHoliday.setTextColor(Color.rgb(0,0, 0));
-                    buttonHoliday.setBackgroundColor(Color.rgb(200,200,200));
+                    chosenAdapter.setDay(compoundButton.getText().toString());
                 }
             }
-        });
-        buttonHoliday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
-                    compoundButton.setBackgroundColor(Color.argb(120,0,0, 255));
-                    compoundButton.setTextColor(Color.rgb(255,255, 255));
-                    chosenAdapter.setHolidays();
-                    buttonWeekdays.setChecked(false);
-                    buttonWeekdays.setTextColor(Color.rgb(0,0, 0));
-                    buttonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
-                }
-            }
-        });
-        //choice switcher for days
+        };
+        ButtonMonday.setOnCheckedChangeListener(changeListener);
+        ButtonTuesday.setOnCheckedChangeListener(changeListener);
+        ButtonWednesday.setOnCheckedChangeListener(changeListener);
+        ButtonThursday.setOnCheckedChangeListener(changeListener);
+        ButtonFriday.setOnCheckedChangeListener(changeListener);
+        ButtonSaturday.setOnCheckedChangeListener(changeListener);
+        ButtonSunday.setOnCheckedChangeListener(changeListener);
+        currentDay();
+    }
+    private void resetSwitchAll(){
+        resetSwitch(ButtonMonday);
+        resetSwitch(ButtonTuesday);
+        resetSwitch(ButtonWednesday);
+        resetSwitch(ButtonThursday);
+        resetSwitch(ButtonFriday);
+        resetSwitch(ButtonSaturday);
+        resetSwitch(ButtonSunday);
+    }
+    private void resetSwitch(ToggleButton toggleButton){
+        toggleButton.setChecked(false);
+        toggleButton.setTextColor(Color.rgb(0,0, 0));
+        toggleButton.setBackgroundColor(Color.rgb(200,200,200));
+    }
+    private void setSwitch(ToggleButton toggleButton){
+        toggleButton.setChecked(true);
+        toggleButton.setTextColor(Color.rgb(255,255, 255));
+        toggleButton.setBackgroundColor(Color.argb(120,0,0, 255));
+    }
+    private void currentDay(){
+        resetSwitchAll();
         Calendar c = Calendar.getInstance();
-        if(c.get(Calendar.DAY_OF_WEEK) == 1 || c.get(Calendar.DAY_OF_WEEK) == 7 ){
-            buttonHoliday.setChecked(true);
-            buttonHoliday.setTextColor(Color.rgb(255,255, 255));
-            buttonHoliday.setBackgroundColor(Color.argb(120,0,0, 255));
-            buttonWeekdays.setChecked(false);
-            buttonWeekdays.setTextColor(Color.rgb(0,0, 0));
-            buttonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
-        }
-        else{
-            buttonHoliday.setChecked(false);
-            buttonHoliday.setTextColor(Color.rgb(0,0, 0));
-            buttonHoliday.setBackgroundColor(Color.rgb(200,200,200));
-            buttonWeekdays.setChecked(true);
-            buttonWeekdays.setTextColor(Color.rgb(255,255, 255));
-            buttonWeekdays.setBackgroundColor(Color.argb(120,0,0, 255));
-        }
+        if(c.get(Calendar.DAY_OF_WEEK) == 2)
+            setSwitch(ButtonMonday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 3)
+            setSwitch(ButtonTuesday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 4)
+            setSwitch(ButtonWednesday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 5)
+            setSwitch(ButtonThursday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 6)
+            setSwitch(ButtonFriday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 7)
+            setSwitch(ButtonSaturday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 1)
+            setSwitch(ButtonSunday);
     }
 }

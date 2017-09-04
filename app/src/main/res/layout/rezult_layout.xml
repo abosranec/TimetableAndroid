@@ -22,8 +22,9 @@
                     android:id="@+id/bus_start"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
-                    android:layout_weight="0.333"
+                    android:layout_weight="1"
                     android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"/>
             <TextView
                     android:text="TextView"
@@ -32,8 +33,9 @@
                     android:id="@+id/bus_end"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
-                    android:layout_weight="0.333"
+                    android:layout_weight="1"
                     android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"/>
             <TextView
                     android:text="TextView"
@@ -42,18 +44,10 @@
                     android:id="@+id/bus_number"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
-                    android:layout_weight="0.333"
+                    android:layout_weight="2"
                     android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"/>
-            <!--<TextView-->
-                    <!--android:text="TextView"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:id="@+id/bus_days"-->
-                    <!--android:paddingRight="10dp"-->
-                    <!--android:paddingLeft="10dp"-->
-                    <!--android:layout_weight="0.25"-->
-                    <!--android:textSize="16sp"/>-->
     </LinearLayout>
     <TextView
             android:layout_width="match_parent"
@@ -65,6 +59,10 @@
             android:textSize="10sp"
             android:gravity="end"
             android:layout_weight="0.01"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/middle3"/>
     <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

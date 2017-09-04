@@ -15,11 +15,10 @@
                 android:id="@+id/route_chosen"
                 android:textSize="20sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-                android:textStyle="normal|bold"
                 android:textAlignment="center"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/blue2"
                 android:textColor="@color/white"/>
         <TextView
                 android:layout_width="match_parent"
@@ -41,7 +40,7 @@
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/blue2"
                     android:textColor="@color/white"/>
             <TextView
                     android:layout_width="1dp"
@@ -57,7 +56,7 @@
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/blue2"
                     android:textColor="@color/white"/>
             <TextView
                     android:layout_width="1dp"
@@ -67,13 +66,13 @@
                     android:text="@string/textNumber"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                     android:textSize="16sp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/blue2"
                     android:textColor="@color/white"/>
         </LinearLayout>
         <ListView
@@ -81,6 +80,10 @@
                 android:layout_height="0dp"
                 android:id="@+id/result_chosen"
                 android:layout_weight="13"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/blue2"/>
         <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
@@ -90,19 +93,97 @@
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/toggleWeekdaysChosen"
+                    android:id="@+id/toggleMondayChosen"
                     android:layout_weight="1"
-                    android:textOn="@string/switchWeekdays"
-                    android:textOff="@string/switchWeekdays"
-                    android:textSize="18sp"/>
+                    android:textOn="@string/switchMonday"
+                    android:textOff="@string/switchMonday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/toggleHolidaysChosen"
+                    android:id="@+id/toggleTuesdayChosen"
                     android:layout_weight="1"
-                    android:textOn="@string/switchHolidays"
-                    android:textOff="@string/switchHolidays"
-                    android:textSize="18sp"/>
+                    android:textOn="@string/switchTuesday"
+                    android:textOff="@string/switchTuesday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleWednesdayChosen"
+                    android:layout_weight="1"
+                    android:textOn="@string/switchWednesday"
+                    android:textOff="@string/switchWednesday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleThursdayChosen"
+                    android:layout_weight="1"
+                    android:textOn="@string/switchThursday"
+                    android:textOff="@string/switchThursday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleFridayChosen"
+                    android:layout_weight="1"
+                    android:textOn="@string/switchFriday"
+                    android:textOff="@string/switchFriday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleSaturdayChosen"
+                    android:layout_weight="1"
+                    android:textOn="@string/switchSaturday"
+                    android:textOff="@string/switchSaturday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
+            <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue2"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleSundayChosen"
+                    android:layout_weight="1"
+                    android:textOn="@string/switchSunday"
+                    android:textOff="@string/switchSunday"
+                    android:textSize="19sp"
+                    android:padding="0dp"
+                    android:background="@color/switcher"/>
         </LinearLayout>
     </LinearLayout>
 

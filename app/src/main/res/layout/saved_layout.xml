@@ -7,7 +7,8 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:orientation="vertical">
+                  android:orientation="vertical"
+                  android:background="@color/middle">
         <TextView
                 android:text="@string/saved"
                 android:layout_width="match_parent"
@@ -15,12 +16,12 @@
                 android:id="@+id/saved"
                 android:textSize="24sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-                android:textStyle="normal|bold"
                 android:textAlignment="center"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_weight="0"
-                android:background="?attr/colorButtonNormal"/>
+                android:background="@color/blue2"
+                android:textColor="@color/white"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="5dp"

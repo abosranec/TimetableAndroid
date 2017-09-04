@@ -22,8 +22,13 @@ public class MainActivity extends Activity {
     private RouteAdapter routeAdapter;
     private ArrayAdapter arrayAdapterStart;
     private ArrayAdapter arrayAdapterEnd;
-    private ToggleButton ButtonWeekdays;
-    private ToggleButton ButtonHoliday;
+    private ToggleButton ButtonMonday;
+    private ToggleButton ButtonTuesday;
+    private ToggleButton ButtonWednesday;
+    private ToggleButton ButtonThursday;
+    private ToggleButton ButtonFriday;
+    private ToggleButton ButtonSaturday;
+    private ToggleButton ButtonSunday;
     private TextView textCurrentRoute;
     private ListView mDrawerListView;
     private DrawerLayout drawerLayout;
@@ -105,8 +110,7 @@ public class MainActivity extends Activity {
                         startActivity(intent);
                         return;
                     case 2:
-//                        resultView.setAdapter(routeAdapter);
-//                        routeAdapter.reWrite();
+                        //Toast.makeText(getApplicationContext(),"Запущено обновление данных", Toast.LENGTH_SHORT).show();
                         new Updater(getApplicationContext()).execute();
                         return;
                 }
@@ -114,6 +118,7 @@ public class MainActivity extends Activity {
         });
     }
 
+    //getters
     public AutoCompleteTextView getStart() {
         return start;
     }
@@ -129,36 +134,12 @@ public class MainActivity extends Activity {
     public ArrayAdapter getArrayAdapterEnd() {
         return arrayAdapterEnd;
     }
-    public ToggleButton getButtonWeekdays() {
-        return ButtonWeekdays;
-    }
-    public ToggleButton getButtonHoliday() {
-        return ButtonHoliday;
-    }
     public TextView getTextCurrentRoute() {
         return textCurrentRoute;
     }
     public ProgressBar getProgressBar() {
         return progressBar;
     }
-
-    //**********************for menu
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_items, menu);
-//        return true;
-//    }
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch(item.getItemId()) {
-//            case R.id.nav_refresh:
-//                resultView.setAdapter(routeAdapter);
-//                routeAdapter.reWrite();
-//                //Toast.makeText(getApplicationContext(),"blablabla ", Toast.LENGTH_SHORT).show();
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     //for find route
     public void findRoute(View view){
@@ -172,57 +153,74 @@ public class MainActivity extends Activity {
                 end.getText().toString().toLowerCase());
 
         //choice switcher for days
-        Calendar c = Calendar.getInstance();
-        if(c.get(Calendar.DAY_OF_WEEK) == 1 || c.get(Calendar.DAY_OF_WEEK) == 7 ){
-            ButtonHoliday.setChecked(true);
-            ButtonHoliday.setTextColor(Color.rgb(255,255, 255));
-            ButtonHoliday.setBackgroundColor(Color.argb(120,0,0, 255));
-            ButtonWeekdays.setChecked(false);
-            ButtonWeekdays.setTextColor(Color.rgb(0,0, 0));
-            ButtonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
-        }
-        else{
-            ButtonHoliday.setChecked(false);
-            ButtonHoliday.setTextColor(Color.rgb(0,0, 0));
-            ButtonHoliday.setBackgroundColor(Color.rgb(200,200,200));
-            ButtonWeekdays.setChecked(true);
-            ButtonWeekdays.setTextColor(Color.rgb(255,255, 255));
-            ButtonWeekdays.setBackgroundColor(Color.argb(120,0,0, 255));
-        }
+        currentDay();
     }
 
-    //switch days
+    //for switch days
     private void initSwitcher(){
-        ButtonWeekdays = findViewById(R.id.toggleWeekdays);
-        ButtonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
-        ButtonHoliday = findViewById(R.id.toggleHolidays);
-        ButtonHoliday.setBackgroundColor(Color.rgb(200,200,200));
-        ButtonWeekdays.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ButtonMonday = findViewById(R.id.toggleMonday);
+        ButtonTuesday = findViewById(R.id.toggleTuesday);
+        ButtonWednesday = findViewById(R.id.toggleWednesday);
+        ButtonThursday = findViewById(R.id.toggleThursday);
+        ButtonFriday = findViewById(R.id.toggleFriday);
+        ButtonSaturday = findViewById(R.id.toggleSaturday);
+        ButtonSunday = findViewById(R.id.toggleSunday);
+        CompoundButton.OnCheckedChangeListener changeListener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
+                    resetSwitchAll();
                     compoundButton.setBackgroundColor(Color.argb(120,0,0, 255));
                     compoundButton.setTextColor(Color.rgb(255,255, 255));
-                    routeAdapter.setWeekdays();
-                    ButtonHoliday.setChecked(false);
-                    ButtonHoliday.setTextColor(Color.rgb(0,0, 0));
-                    ButtonHoliday.setBackgroundColor(Color.rgb(200,200,200));
+                    routeAdapter.setDay(compoundButton.getText().toString());
                 }
             }
-        });
-        ButtonHoliday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
-                    compoundButton.setBackgroundColor(Color.argb(120,0,0, 255));
-                    compoundButton.setTextColor(Color.rgb(255,255, 255));
-                    routeAdapter.setHolidays();
-                    ButtonWeekdays.setChecked(false);
-                    ButtonWeekdays.setTextColor(Color.rgb(0,0, 0));
-                    ButtonWeekdays.setBackgroundColor(Color.rgb(200,200,200));
-                }
-            }
-        });
+        };
+        ButtonMonday.setOnCheckedChangeListener(changeListener);
+        ButtonTuesday.setOnCheckedChangeListener(changeListener);
+        ButtonWednesday.setOnCheckedChangeListener(changeListener);
+        ButtonThursday.setOnCheckedChangeListener(changeListener);
+        ButtonFriday.setOnCheckedChangeListener(changeListener);
+        ButtonSaturday.setOnCheckedChangeListener(changeListener);
+        ButtonSunday.setOnCheckedChangeListener(changeListener);
+        resetSwitchAll();
+    }
+    private void resetSwitchAll(){
+        resetSwitch(ButtonMonday);
+        resetSwitch(ButtonTuesday);
+        resetSwitch(ButtonWednesday);
+        resetSwitch(ButtonThursday);
+        resetSwitch(ButtonFriday);
+        resetSwitch(ButtonSaturday);
+        resetSwitch(ButtonSunday);
+    }
+    private void resetSwitch(ToggleButton toggleButton){
+        toggleButton.setChecked(false);
+        toggleButton.setTextColor(Color.rgb(0,0, 0));
+        toggleButton.setBackgroundColor(Color.rgb(200,200,200));
+    }
+    private void setSwitch(ToggleButton toggleButton){
+        toggleButton.setChecked(true);
+        toggleButton.setTextColor(Color.rgb(255,255, 255));
+        toggleButton.setBackgroundColor(Color.argb(120,0,0, 255));
+    }
+    private void currentDay(){
+        resetSwitchAll();
+        Calendar c = Calendar.getInstance();
+        if(c.get(Calendar.DAY_OF_WEEK) == 2)
+            setSwitch(ButtonMonday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 3)
+            setSwitch(ButtonTuesday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 4)
+            setSwitch(ButtonWednesday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 5)
+            setSwitch(ButtonThursday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 6)
+            setSwitch(ButtonFriday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 7)
+            setSwitch(ButtonSaturday);
+        if(c.get(Calendar.DAY_OF_WEEK) == 1)
+            setSwitch(ButtonSunday);
     }
 
     //for save route
