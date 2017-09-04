@@ -226,7 +226,7 @@
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                       android:layout_width="match_parent"
-                      android:layout_height="40dp"
+                      android:layout_height="45dp"
                       android:layout_weight="0"
                       android:orientation="horizontal">
             <ToggleButton
@@ -236,7 +236,8 @@
                     android:layout_weight="1"
                     android:textOn="@string/switchWeekdays"
                     android:textOff="@string/switchWeekdays"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:padding="0dp"/>
             <ToggleButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -244,7 +245,53 @@
                     android:layout_weight="1"
                     android:textOn="@string/switchHolidays"
                     android:textOff="@string/switchHolidays"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:padding="0dp"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleWednesday"
+                    android:layout_weight="1"
+                    android:textOn="СР"
+                    android:textOff="СР"
+                    android:textSize="18sp"
+                    android:padding="0dp"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleThursday"
+                    android:layout_weight="1"
+                    android:textOn="ЧТ"
+                    android:textOff="ЧТ"
+                    android:textSize="18sp"
+                    android:padding="0dp"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleFriday"
+                    android:layout_weight="1"
+                    android:textOn="ПТ"
+                    android:textOff="ПТ"
+                    android:textSize="18sp"
+                    android:padding="0dp"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleSaturday"
+                    android:layout_weight="1"
+                    android:textOn="СБ"
+                    android:textOff="СБ"
+                    android:textSize="18sp"
+                    android:padding="0dp"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toggleSunday"
+                    android:layout_weight="1"
+                    android:textOn="ВС"
+                    android:textOff="ВС"
+                    android:textSize="18sp"
+                    android:padding="0dp"/>
         </LinearLayout>
     </LinearLayout>
 
