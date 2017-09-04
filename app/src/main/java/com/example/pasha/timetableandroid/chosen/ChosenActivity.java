@@ -7,11 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.*;
-import com.example.pasha.timetableandroid.MainActivity;
-import com.example.pasha.timetableandroid.R;
-import com.example.pasha.timetableandroid.SavedActivity;
-import com.example.pasha.timetableandroid.Updater;
-import com.example.pasha.timetableandroid.saved.SavedAdapter;
+import com.example.pasha.timetableandroid.*;
 
 import java.util.Calendar;
 
@@ -75,6 +71,10 @@ public class ChosenActivity extends Activity {
                     case 2:
                         Toast.makeText(getApplicationContext(),"Запущено обновление данных", Toast.LENGTH_SHORT).show();
                         new Updater(getApplicationContext()).execute();
+                        return;
+                    case 4:
+                        Intent intent3 = new Intent(getApplicationContext(), AboutActivity.class);
+                        startActivity(intent3);
                         return;
                 }
             }

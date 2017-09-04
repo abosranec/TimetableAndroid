@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".chosen.ChosenActivity">
         </activity>
+        <activity android:name=".AboutActivity">
+        </activity>
     </application>
 
 </manifest>

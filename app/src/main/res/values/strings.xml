@@ -33,4 +33,8 @@
     <string name="switchFriday">ПТ</string>
     <string name="switchSaturday">СБ</string>
     <string name="switchSunday">ВС</string>
+    <string name="about">О приложении</string>
+    <string name="text_about">Приложение сделано на основе данных с сайта www.minsktrans.by.\nЗдесь можно посмотреть и сохранить маршрут пригородных автобусов, зная начальную и конечную остановку, при этом имея их актуальное расписание.
+    \nВаши варианты и предложения можете присылать на pasha_mugako@mail.ru.
+    \nРазработано Пашей.</string>
 </resources>

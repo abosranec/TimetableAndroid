@@ -9,33 +9,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.example.pasha.timetableandroid.saved.SavedAdapter;
 
-public class SavedActivity extends Activity {
-
-    private ListView savedView;
-    private SavedAdapter savedAdapter;
+public class AboutActivity extends Activity {
     private ListView mDrawerListView;
     private DrawerLayout drawerLayout;
-
-    public ListView getSavedView() {
-        return savedView;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.saved_layout);
-
-        //initial ListView
-        savedView = findViewById(R.id.saved_result);
-        savedAdapter = new SavedAdapter(this);
-        savedView.setAdapter(savedAdapter);
+        setContentView(R.layout.about_layout);
 
         //menu drawer
         String[] menuTitles = getResources().getStringArray(R.array.heads_menu);
-        drawerLayout = findViewById(R.id.drawer_layout_saved);
-        mDrawerListView = findViewById(R.id.left_drawer_saved);
+        drawerLayout = findViewById(R.id.drawer_layout_about);
+        mDrawerListView = findViewById(R.id.left_drawer_about);
         mDrawerListView.setAdapter(new ArrayAdapter<>(this,
                 R.layout.drawer_list_item, menuTitles));
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,22 +30,20 @@ public class SavedActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 drawerLayout.closeDrawers();
                 switch(i) {
+                    case 0:
+                        Intent intent1 = new Intent(getApplicationContext(), SavedActivity.class);
+                        startActivity(intent1);
+                        return;
                     case 1:
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
+                        Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent2);
                         return;
                     case 2:
                         Toast.makeText(getApplicationContext(),"Запущено обновление данных", Toast.LENGTH_SHORT).show();
                         new Updater(getApplicationContext()).execute();
                         return;
-                    case 4:
-                        Intent intent3 = new Intent(getApplicationContext(), AboutActivity.class);
-                        startActivity(intent3);
-                        return;
                 }
             }
         });
-
-
     }
 }

@@ -81,8 +81,6 @@ public class SavedAdapter extends BaseAdapter {
         });
         savedRoute.setText(saved.getRoute());
         savedTimes.setText(saved.getTimes());
-        //busStart.setText(route.getStart());
-        //busDays.setText(route.getDays());
 
         if (i % 2 == 0) {
             savedRoute.setBackgroundColor(Color.argb(120, 0, 0, 255));
