@@ -112,17 +112,14 @@ public class Updater extends AsyncTask<Void, Void, Void> {
                             if (rowItems.size() == 0)
                                 rowItems = row.select("td");
                             //made routes
-                            String days = "";
-                            if (rowItems.get(3).text().equals("пн вт ср чт пт"))
-                                days = "буд";
-                            else
-                                days = "вых";
-                            listRoute.add(new Route(
-                                    rowItems.get(0).text(),
-                                    rowItems.get(3).text().toUpperCase(),
-                                    rowItems.get(1).text(),
-                                    rowItems.get(2).text(),
-                                    days));
+                            if (rowItems.size() == 5) {
+                                listRoute.add(new Route(
+                                        rowItems.get(0).text(),
+                                        rowItems.get(4).text().toUpperCase(),
+                                        rowItems.get(2).text(),
+                                        rowItems.get(3).text(),
+                                        rowItems.get(1).text()));
+                            }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -132,6 +129,9 @@ public class Updater extends AsyncTask<Void, Void, Void> {
                     //read and write route
                     if (listRoute.size() > 0){
                         try {
+                            //sorting
+                            Collections.sort(listRoute);
+
                             //read old route
                             BufferedReader reader = new BufferedReader(new InputStreamReader(context.openFileInput(path)));
                             String start = reader.readLine();

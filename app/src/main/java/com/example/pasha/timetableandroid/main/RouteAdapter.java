@@ -127,19 +127,15 @@ public class RouteAdapter extends BaseAdapter{
                     Elements rowItems = row.select("th");
                     if (rowItems.size() == 0)
                         rowItems = row.select("td");
-
                     //made routes
-                    String days;
-                    if (rowItems.get(3).text().equals("пн вт ср чт пт"))
-                        days = "буд";
-                    else
-                        days = "вых";
-                    listRoute.add(new Route(
-                            rowItems.get(0).text(),
-                            rowItems.get(3).text().toUpperCase(),
-                            rowItems.get(1).text(),
-                            rowItems.get(2).text(),
-                            days));
+                    if (rowItems.size() == 5) {
+                        listRoute.add(new Route(
+                                rowItems.get(0).text(),
+                                rowItems.get(4).text().toUpperCase(),
+                                rowItems.get(2).text(),
+                                rowItems.get(3).text(),
+                                rowItems.get(1).text()));
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
