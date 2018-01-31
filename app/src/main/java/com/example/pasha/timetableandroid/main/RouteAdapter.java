@@ -136,7 +136,7 @@ public class RouteAdapter extends BaseAdapter{
                                 rowItems.get(4).text().toUpperCase(),
                                 rowItems.get(2).text(),
                                 rowItems.get(3).text(),
-                                rowItems.get(1).text()));
+                                rowItems.get(1).text().toLowerCase()));
                     }
                 }
             } catch (IOException e) {
