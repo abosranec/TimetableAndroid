@@ -15,9 +15,10 @@
     <string name="activityAbout">О приложении</string>
     <string name="textStart">Из:</string>
     <string name="textEnd">В:</string>
-    <string name="textStart2">Откуда</string>
-    <string name="textEnd2">Куда</string>
-    <string name="textNumber">Регулярность</string>
+    <string name="textStart2">Из</string>
+    <string name="textEnd2">В</string>
+    <string name="textRegularity">Регулярность</string>
+    <string name="textNumber">№</string>
     <string-array name="heads_menu">
         <item>Сохраненные маршруты</item>
         <item>Новый маршрут</item>
