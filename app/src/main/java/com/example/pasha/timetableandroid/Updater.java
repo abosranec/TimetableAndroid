@@ -90,10 +90,6 @@ public class Updater extends AsyncTask<Void, Void, Void> {
     //update saved
     private String updateSaved() {
 
-
-
-
-
         String[] strings = context.fileList();
         if (strings.length > 0) {
             for (String path: strings) {
